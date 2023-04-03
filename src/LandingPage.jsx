@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 import './landingPage.css';
 import { Settings, AddCircle } from '@mui/icons-material';
 
 const LandingPage = () => {
-    // const [roomCode, joinRoom] = useState();
-    // const [username, createRoom] = useState();
 
     return (
         <div className="landingPage">
