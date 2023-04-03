@@ -17,11 +17,11 @@ const LandingPage = () => {
                     </span>
                 </div>
 
-                {/* Enter username to display on the main page*/}
+                {/* Input username to display on the main page*/}
                 <p className="usernameText">Username</p>
                 <input type="text" id="username" placeholder="Enter username" className="usernameInput"/><br/>
         
-                {/* Enter a room code and join a room */}
+                {/* Input a room code and join a room */}
                 <input type="text" id="roomCode" placeholder="Enter room code" className="roomCodeInput"/>
                 <button className="joinRoomButton" onClick={() => joinRoom(roomCode)}>Join room</button><br/>
 
