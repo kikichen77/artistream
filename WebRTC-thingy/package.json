@@ -1,0 +1,18 @@
+{
+  "name": "WebRTC-thingy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author": "Toby Tomkinson",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "ws": "^3.3.2"
+  }
+}
