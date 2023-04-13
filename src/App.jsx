@@ -6,6 +6,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import WhiteboardPage from './WhiteboardComponents/WhiteboardPage';
 // import { useContext } from "react";
 
 const App = () => {
@@ -13,8 +14,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<LandingPage />}>
-        </Route>
+        <Route exact path="/" element={<LandingPage />}/>
+        <Route path="whiteboard" element={<WhiteboardPage/>}/>
+        
       </Routes>
     </BrowserRouter>
   );
