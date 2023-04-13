@@ -1,8 +1,9 @@
+import styles from "./WhiteboardStyles/ConnectedUsersStyles.module.css"
 
 export default function ConnectedUsers() {
     return (
-        <div>
-            <p>Connected Users</p>
+        <div className={styles.conUsersBox}>
+            <h2 className={styles.conUsersText}>Connected Users</h2>
         </div>
     )
 }

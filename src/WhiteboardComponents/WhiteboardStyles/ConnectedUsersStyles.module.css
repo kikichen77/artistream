@@ -1,0 +1,16 @@
+.conUsersText {
+    text-align: center;
+    color: white;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.conUsersBox {
+    background-color: rgb(37, 42, 69);
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    height: 50%;
+    width: 200px;
+    position: fixed;
+}
