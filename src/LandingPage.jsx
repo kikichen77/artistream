@@ -15,6 +15,7 @@ const LandingPage = () => {
                     <span className="addCircleIconContainer">
                         <AddCircle className="addCircleIcon" />
                     </span>
+                    
                 </div>
 
                 {/* Input username to display on the main page*/}
