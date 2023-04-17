@@ -4,7 +4,8 @@ import CallIcon from "@mui/icons-material/Call";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import MicIcon from "@mui/icons-material/Mic";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import VideocamOffIcon from "@mui/icons-material/VideocamOff";
 import HomeIcon from "@mui/icons-material/Home";
 import SettingsPopUp from "./SettingsPopUp";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -13,16 +14,14 @@ import { useState } from "react";
 import { IconButton } from "@mui/material";
 
 const MeetingControls = () => {
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const open = Boolean(anchorEl);
-	const [isMute, setMute] = useState(true);
+	const [isMute, setMute] = useState(false);
+	const [isCamOn, setCamOn] = useState(false);
 
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
+	const handleMicIconClick = () => {
+		setMute(!isMute);
 	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
+	const handleCamIconClick = () => {
+		setCamOn(!isCamOn);
 	};
 
 	return (
@@ -48,17 +47,30 @@ const MeetingControls = () => {
 					color: "white",
 				}}
 			>
-				<ArrowDropUpIcon onClick={handleClick} />
-
-				<HomeIcon />
-				<AddReactionIcon />
-				<PersonAddAlt1Icon />
-				<CallIcon color="red" />
-				<MicIcon onClick={() => setMute(!isMute)}>
-					{isMute ? <MicIcon /> : <MicOffIcon />}
-				</MicIcon>
-				<CameraAltIcon />
-				<SettingsPopUp />
+				<IconButton sx={{ color: "white" }}>
+					<ArrowDropUpIcon />
+				</IconButton>
+				<IconButton sx={{ color: "white" }}>
+					<HomeIcon />
+				</IconButton>
+				<IconButton sx={{ color: "white" }}>
+					<AddReactionIcon />
+				</IconButton>
+				<IconButton sx={{ color: "white" }}>
+					<PersonAddAlt1Icon />
+				</IconButton>
+				<IconButton sx={{ color: "white" }}>
+					<CallIcon color="red" />
+				</IconButton>
+				<IconButton onClick={handleMicIconClick} sx={{ color: "white" }}>
+					{isMute ? <MicOffIcon /> : <MicIcon />}
+				</IconButton>
+				<IconButton onClick={handleCamIconClick} sx={{ color: "white" }}>
+					{isCamOn ? <VideocamIcon /> : <VideocamOffIcon />}
+				</IconButton>
+				<IconButton sx={{ color: "white" }}>
+					<SettingsPopUp />
+				</IconButton>
 			</Box>
 		</>
 	);

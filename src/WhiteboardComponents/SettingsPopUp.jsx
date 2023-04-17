@@ -13,6 +13,7 @@ import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
 import Menu from "@mui/material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { Margin } from "@mui/icons-material";
 
 const SettingsPopUp = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,12 +43,17 @@ const SettingsPopUp = () => {
 				MenuListProps={{
 					"aria-labelledby": "basic-button",
 				}}
-				sx={{ width: 320, maxWidth: "100%" }}
+				sx={{
+					width: 320,
+					maxWidth: "100%",
+					marginLeft: "25px",
+					marginTop: "-100px",
+				}}
 			>
 				<MenuItem onClick={handleClose}>Profile</MenuItem>
 				<MenuItem onClick={handleClose}>My account</MenuItem>
 				<MenuItem onClick={handleClose}>Logout</MenuItem>
-				<Paper sx={{ width: 320, maxWidth: "100%" }}>
+				<Paper sx={{ width: 320, maxWidth: "100%", alignContent: "right" }}>
 					<MenuList>
 						<MenuItem onClick={handleClose}>
 							<ListItemIcon>
