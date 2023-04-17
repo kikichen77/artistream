@@ -1,13 +1,11 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import LandingPage from "./LandingPage";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateRoom from './createroom';
 import {useState } from 'react';
+import WhiteboardPage from "./WhiteboardComponents/WhiteboardPage";
+
 // import { useContext } from "react";
 
 const App = () => {
