@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "./createRoom.css";
 
 export default function CreateRoom({ username }) {
   const localVideoRef = useRef(null);
@@ -26,9 +27,9 @@ export default function CreateRoom({ username }) {
   }, []);
 
   return (
-    <div>
-      <span>{username}</span>
-      <video style={{ width: "400px" }} ref={localVideoRef} autoPlay></video>
+    <div className="video-wrap">
+      <span className="absolute top=1 left=1">{username}</span>
+      <video style={{ width: "400px", transform: "rotateY(180deg)" }} ref={localVideoRef} autoPlay></video>
     </div>
   );
 }

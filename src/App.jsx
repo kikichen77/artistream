@@ -17,7 +17,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route  path="/" element={<LandingPage username={username} setUsername={setUsername}/>}exact />
+        <Route path="/" element={<LandingPage username={username} setUsername={setUsername}/>}exact />
         <Route path={`/room/${username}`} element={<CreateRoom username={username}/>} />
 
       </Routes>

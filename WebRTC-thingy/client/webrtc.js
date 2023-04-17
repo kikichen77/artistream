@@ -145,7 +145,7 @@ callBtn.addEventListener("click", function () {
 /* END: Initiate call to any user i.e. send message to server */
 
 
-/* START: Recieved call from server i.e. recieve messages from server  */
+/* START: Received call from server i.e. receive messages from server  */
 function gotMessageFromServer(message) {
   console.log("Got message", message.data); 
   var data = JSON.parse(message.data); 

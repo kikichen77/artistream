@@ -2,71 +2,98 @@ import React, { useEffect, useState } from "react";
 import "./landingPage.css";
 import { Settings, AddCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-const LandingPage = ({username,setUsername}) => {
-  const[create,setCreateState]=useState(false)
-  useEffect(()=>{
-    if(create){
-    if(!username){
-       alert("username is empty")
-       setCreateState(false)
-    }}
-  },[username,create])
+import DefaultImage from "../public/sample.png";
+
+
+const LandingPage = ({username, setUsername}) => {
+  
+  const [create, setCreateState] = useState(false);
+  const [image, setImage] = useState(null);
+  let errorMessage = [];
+  
+  useEffect(() => {
+    if (create) {
+      if (!username) {
+        errorMessage[0] = "Username is empty.";
+        setCreateState(false)
+      } else if (!image) {
+        errorMessage[1] = "Select your account image.";
+      }
+    }
+  },[username, create])
+
+  function validateImage(e) {
+    const file = e.target.files[0];
+    if (file.size >= 200000) {
+      errorMessage[2] = "Maximum file size is 8KB.";
+    } else {
+      setImage(URL.createObjectURL(file));
+    }
+  }
 
   return (
     <div className="landingPage">
+
       {/* Set an image space */}
       <div className="imageSpaceContainer">
         <div className="imageSpaceDiv">
-          <img src="vite.svg" alt="" className="userImage" />
+          <img src={image || DefaultImage} alt="account image" className="userImage" />
         </div>
-        <span className="addCircleIconContainer">
-          <AddCircle className="addCircleIcon" />
-        </span>
+        <label htmlFor="accountImg" className="addCircleIconContainer">
+          <AddCircle style={{ fontSize: 35 }} className="addCircleIcon" />
+        </label>
+        <input 
+          type="file" 
+          name="file"
+          id="accountImg"
+          accept="image/png, image/jpeg"
+          onChange={validateImage}
+          hidden
+        />
+        <span style={{ color: "yellow" }}>{errorMessage[1]}</span>
       </div>
 
       {/* Input username to display on the main page*/}
-      <p className="usernameText">Username</p>
-      <input
-        type="text"
-        id="username"
-        placeholder="Enter username"
-        className="usernameInput"
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      />
+      <span className="inputWrap usernameInputWrap">
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter username"
+          className="inputArea"
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+      </span>
       <br />
 
       {/* Input a room code and join a room */}
-      <input
-        type="text"
-        id="roomCode"
-        placeholder="Enter room code"
-        className="roomCodeInput"
-      />
-      <button className="joinRoomButton" onClick={() => joinRoom(roomCode)}>
+      <span className="inputWrap roomCodeInputWrap">
+        <input
+          type="text"
+          id="roomCode"
+          placeholder="Enter room code"
+          className="inputArea"
+        />
+      <span></span>
+      </span>
+      <button className="btn joinRoomButton" onClick={() => joinRoom(roomCode)}>
         Join room
       </button>
       <br />
 
       {/* Create a new room */}
-      {username ? (
-        <Link to={`/room/${username}`}>
-          <button
-            className="createRoomButton"onClick={() => {setCreateState(true)}}
-          >
-            Create Room
-          </button>
-        </Link>
-      ) : (
-          <button
-            className="createRoomButton"onClick={() => {setCreateState(true)}}
-          >
-            Create Room
-          </button>
-      )}
+      <Link to={`/room/${username}`}>
+        <button
+          className="btn createRoomButton"
+          onClick={() => {setCreateState(true)}}
+          disabled={!username || !image}
+        >
+          Create room
+        </button>
+      </Link>
 
-      <Settings className="settingsIcon" />
+      <Settings style={{ fontSize: 30 }} className="settingsIcon" />
     </div>
   );
 };

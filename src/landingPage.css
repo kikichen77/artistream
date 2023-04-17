@@ -13,6 +13,12 @@ body {
     position: relative;
 }
 
+.imageSpaceContainer {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+}
+
 .imageSpaceDiv {
     width: 200px;
     height: 200px;
@@ -24,19 +30,14 @@ body {
     position: relative;
 }
 
-.imageSpaceContainer {
-    position: absolute;
-    top: 100px;
-    left: 200px;
-}
-
 .userImage {
-    width: 80%;
+    width: 100%;
+    border-radius: 50%;
 }
 
 .addCircleIconContainer {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-color: rgb(37, 42, 69);
     border-radius: 50%;
     position: absolute;
@@ -45,57 +46,112 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .addCircleIcon {
-    color: lightgray;
+    color: rgb(51, 211, 206);
 }
 
-.usernameText {
-    color: aliceblue;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: 300;
-    margin: 0;
-    position: absolute;
-    top: 150px;
-    right: 400px;
-}
-
-.usernameInput {
-    width: 300px;
-    height: 50px;
-    border-radius: 20px;
-    padding-left: 20px;
+.usernameInputWrap {
     position: absolute;
     top: 200px;
-    right: 200px;
+    right: 240px;
 }
 
-.roomCodeInput {
-    width: 300px;
-    height: 50px;
-    border-radius: 20px;
-    padding-left: 20px;
+.roomCodeInputWrap {
     position: absolute;
     bottom: 300px;
-    left: 230px;
+    left: 250px;
 }
+
+.inputWrap {
+    font-size: 1.5em;
+    background: linear-gradient(21deg, #1050ff, #1beabd);
+    padding: 3px;
+    display: flex;
+    border-radius: 9999em;
+    border: none;
+    outline: none;
+    z-index: 1;
+    flex-direction: column;
+}
+
+.inputWrap *:not(span) {
+    position: relative;
+    display: inherit;
+    border-radius: inherit;
+    margin: 0;
+    border: none;
+    outline: none;
+    padding: 0 .325em;
+    z-index: 1;
+}
+
+.inputWrap *:not(span):focus + span {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.inputArea {
+    width: 250px;
+    height: 50px;
+    font-size: 21px;
+    display: inherit;
+    border-radius: 25px;
+    border: none;
+    z-index: 1;
+}
+
+.inputWrap span {
+    transform: scale(0.993, 0.94);
+    transition: transform 0.5s, opacity 0.25s;
+    opacity: 0;
+    position: absolute;
+    z-index: 0;
+    margin: 4px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+  }
+
+.btn {
+    border: none;
+    background-image: linear-gradient(21deg, #223976, #0988cd, #42c1a6, #2a9b64);
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    border-radius: 30px;
+    transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.btn:hover {
+    box-shadow: 1px 5px 15px 0 rgba(71, 201, 197, 0.75);
+    transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
 .joinRoomButton {
     width: 150px;
     height: 50px;
-    border-radius: 20px;
     position: absolute;
     bottom: 300px;
-    right: 230px;
+    right: 240px;
 }
+
 .createRoomButton {
     width: 400px;
     height: 50px;
-    border-radius: 20px;
     position: absolute;
     bottom: 150px;
-    right: 260px;
+    right: 290px;
 }
 
 .settingsIcon {
@@ -103,6 +159,13 @@ body {
     position: absolute;
     bottom: 30px;
     right: 50px;
+    cursor: pointer;
+    transition: transform 1s ease;
+}
+  
+.settingsIcon:hover {
+    transform-origin: center center;
+    transform: rotate(90deg);
 }
 
 @media only screen and (max-width: 600px) {
