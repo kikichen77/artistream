@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./landingPage.css";
 import { Settings, AddCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import DefaultImage from "../public/sample.png";
+import DefaultImage from "./sample.png";
 
 
 const LandingPage = ({username, setUsername}) => {
@@ -81,8 +81,9 @@ const LandingPage = ({username, setUsername}) => {
         Join room
       </button>
       <br />
-
+      
       {/* Create a new room */}
+      {/* Currently an issue with this  
       <Link to={`/room/${username}`}>
         <button
           className="btn createRoomButton"
@@ -92,6 +93,24 @@ const LandingPage = ({username, setUsername}) => {
           Create room
         </button>
       </Link>
+      */}
+
+      {/* Create a new room */}
+      {username ? (
+        <Link to={`/room/${username}`}>
+          <button
+            className="btn createRoomButton"onClick={() => {setCreateState(true)}}
+          >
+            Create Room
+          </button>
+        </Link>
+      ) : (
+          <button
+            className="btn createRoomButton"onClick={() => {setCreateState(true)}}
+          >
+            Create Room
+          </button>
+      )}
 
       <Settings style={{ fontSize: 30 }} className="settingsIcon" />
     </div>
