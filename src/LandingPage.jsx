@@ -3,6 +3,7 @@ import "./landingPage.css";
 import { Settings, AddCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import DefaultImage from "./sample.png";
+import WhiteboardPage from "./WhiteboardComponents/WhiteboardPage.jsx"
 
 
 const LandingPage = ({username, setUsername}) => {
@@ -97,7 +98,7 @@ const LandingPage = ({username, setUsername}) => {
 
       {/* Create a new room */}
       {username ? (
-        <Link to={`/room/${username}`}>
+        <Link to={`whiteboard/${username}`}>
           <button
             className="btn createRoomButton"onClick={() => {setCreateState(true)}}
           >

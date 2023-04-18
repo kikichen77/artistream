@@ -29,7 +29,7 @@ export default function CreateRoom({ username }) {
   return (
     <div className="video-wrap">
       <span className="absolute top=1 left=1">{username}</span>
-      <video style={{ width: "400px", transform: "rotateY(180deg)" }} ref={localVideoRef} autoPlay></video>
+      <video style={{ width: "100%", transform: "rotateY(180deg)" }} ref={localVideoRef} autoPlay></video>
     </div>
   );
 }

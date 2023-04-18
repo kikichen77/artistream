@@ -11,12 +11,15 @@ import WhiteboardPage from "./WhiteboardComponents/WhiteboardPage";
 const App = () => {
   // const { user } = useContext(AuthContext);
   const [username, setUsername] = useState("");
- 
+  //<Route path={`whiteboard/room/${username}`} element={<CreateRoom username={username}/>} />
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage username={username} setUsername={setUsername}/>}exact />
-        <Route path={`/room/${username}`} element={<CreateRoom username={username}/>} />
+        <Route path="whiteboard/:id" element={<WhiteboardPage createRoomComponent={<CreateRoom username={username}/>}/>}> 
+          
+        </Route>
+        
 
       </Routes>
     </BrowserRouter>
