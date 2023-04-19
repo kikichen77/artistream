@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import React, { useRef, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import { IconButton } from "@mui/material";
 import { fabric } from "fabric";
+import { Button } from "@mui/material";
+import BackHandIcon from "@mui/icons-material/BackHand";
 
 const Canvas = () => {
 	const canvasRef = useRef(null);
@@ -68,12 +70,15 @@ const Canvas = () => {
 			canvas.remove(objects[objects.length - 1]);
 		}
 	};
-
-	const handleErase = () => {
-		canvas.isDrawingMode = !canvas.isDrawingMode;
+	const handleSelector = () => {
+		canvas.isDrawingMode = false;
+	};
+	const handleDraw = () => {
+		canvas.isDrawingMode = true;
+	};
+	const handleClear = () => {
 		canvas.clear();
 	};
-
 	const handleAddText = () => {
 		const text = new fabric.IText("Type text here", {
 			left: 50,
@@ -87,6 +92,7 @@ const Canvas = () => {
 		canvas.setActiveObject(text);
 		text.enterEditing();
 	};
+
 	const handleBrushSizeChange = (e) => {
 		canvas.freeDrawingBrush.width = parseInt(e.target.value, 10);
 	};
@@ -129,6 +135,7 @@ const Canvas = () => {
 		});
 		canvas.add(triangle);
 	};
+
 	const handleSaveImage = () => {
 		const dataURL = canvas.toDataURL();
 		const link = document.createElement("a");
@@ -168,13 +175,102 @@ const Canvas = () => {
 				}}
 			>
 				<div>
-					<canvas ref={canvasRef} width={800} height={800} />
-					<button onClick={handleAddRectangle}>Add Rectangle</button>
-					<button onClick={handleAddCircle}>Add Circle</button>
-					<button onClick={handleAddTriangle}>Add Triangle</button>
-					<button onClick={handleUndo}>Undo</button>
-					<button onClick={handleErase}>Erase</button>
-					<button onClick={handleAddText}>Add Text</button>
+					<canvas
+						ref={canvasRef}
+						width={1000}
+						height={800}
+						style={{ alignItems: "center", borderRadius: "20px" }}
+					/>
+					<Button
+						size="small"
+						variant="filled"
+						onClick={handleAddRectangle}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Add Rectangle
+					</Button>
+					<Button
+						onClick={handleAddCircle}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Add Circle
+					</Button>
+					<Button
+						onClick={handleAddTriangle}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Add Triangle
+					</Button>
+					<Button
+						onClick={handleUndo}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Undo
+					</Button>
+					<Button
+						onClick={handleDraw}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Draw
+					</Button>
+					<IconButton sx={{ color: "white" }} onClick={handleSelector}>
+						<BackHandIcon />
+					</IconButton>
+					<Button
+						onClick={handleClear}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Clear
+					</Button>
+					<Button
+						onClick={handleAddText}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Add Text
+					</Button>
+
 					<input
 						type="range"
 						min="1"
@@ -186,9 +282,39 @@ const Canvas = () => {
 						type="color"
 						defaultValue="#000000"
 						onChange={handleBrushColorChange}
+						style={{
+							borderRadius: "10px",
+							backgroundColor: "darkgray",
+							width: "30px",
+							color: "white",
+							margin: "2px",
+						}}
 					/>
-					<button onClick={handleSaveImage}>Save Image</button>
-					<button onClick={handleExportAsPDF}>Export as PDF</button>
+
+					<Button
+						onClick={handleSaveImage}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Save Image
+					</Button>
+					<Button
+						onClick={handleExportAsPDF}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "20px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Export as PDF
+					</Button>
 				</div>
 			</Box>
 		</Box>

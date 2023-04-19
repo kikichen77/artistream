@@ -1,17 +1,15 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import CallIcon from "@mui/icons-material/Call";
-import AddReactionIcon from "@mui/icons-material/AddReaction";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import MicIcon from "@mui/icons-material/Mic";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import VideocamOffIcon from "@mui/icons-material/VideocamOff";
-import HomeIcon from "@mui/icons-material/Home";
 import SettingsPopUp from "./SettingsPopUp";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import MicOffIcon from "@mui/icons-material/MicOff";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
+import EmoticonPalette from "./EmoticonPalette";
 
 const MeetingControls = () => {
 	const [isMute, setMute] = useState(false);
@@ -47,14 +45,14 @@ const MeetingControls = () => {
 					color: "white",
 				}}
 			>
-				<IconButton sx={{ color: "white" }}>
+				{/* <IconButton sx={{ color: "white" }}>
 					<ArrowDropUpIcon />
 				</IconButton>
 				<IconButton sx={{ color: "white" }}>
 					<HomeIcon />
-				</IconButton>
+				</IconButton> */}
 				<IconButton sx={{ color: "white" }}>
-					<AddReactionIcon />
+					<EmoticonPalette />
 				</IconButton>
 				<IconButton sx={{ color: "white" }}>
 					<PersonAddAlt1Icon />
