@@ -27,22 +27,20 @@ const MeetingControls = () => {
 			<Box
 				sx={{
 					"& > :not(style)": {
-						m: 5,
+						m: 2,
 					},
 					backgroundColor: "rgb(37, 42, 69)",
 					borderRadius: "20px",
-					position: "absolute",
-					width: "83%",
-					bottom: 0,
-					left: 0,
-					right: 0,
-					display: "flex",
-					marginLeft: "auto",
-					marginRight: "30px",
-					marginBottom: "30px",
+					bottom: "0",
+					position: "flex",
+					marginTop: "20px",
+					marginRight: "20px",
 					padding: "10px",
 					justifyContent: "center",
+					alignItems: "center",
+					display: "flex",
 					color: "white",
+					position: "relative",
 				}}
 			>
 				{/* <IconButton sx={{ color: "white" }}>

@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { IconButton } from "@mui/material";
 import { fabric } from "fabric";
-import { Button } from "@mui/material";
+
 import BackHandIcon from "@mui/icons-material/BackHand";
 
 const Canvas = () => {
@@ -160,117 +160,97 @@ const Canvas = () => {
 	};
 
 	return (
-		<Box sx={{ display: "flex", justifyContent: "flex-end", height: "100vh" }}>
-			<Box
-				sx={{
-					backgroundColor: "rgb(37, 42, 69)",
-					borderRadius: "20px",
-					width: "84%",
-					height: "70%",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					marginRight: "30px",
-					marginTop: "30px",
-				}}
-			>
-				<div>
-					<canvas
-						ref={canvasRef}
-						width={1000}
-						height={800}
-						style={{ alignItems: "center", borderRadius: "20px" }}
-					/>
-					<Button
-						size="small"
-						variant="filled"
+		<Box
+			sx={{
+				backgroundColor: "rgb(37, 42, 69)",
+				borderRadius: "20px",
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				marginRight: "20px",
+			}}
+		>
+			<div>
+				<canvas
+					ref={canvasRef}
+					width={1300}
+					height={600}
+					style={{
+						borderRadius: "20px",
+						margin: "5px",
+					}}
+				/>
+				<div
+					style={{
+						margin: "20px",
+						display: "flex",
+						justifyContent: "center",
+					}}
+				>
+					<button
 						onClick={handleAddRectangle}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Add Rectangle
-					</Button>
-					<Button
+					</button>
+					<button
 						onClick={handleAddCircle}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
+							width: "120px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Add Circle
-					</Button>
-					<Button
+					</button>
+					<button
 						onClick={handleAddTriangle}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Add Triangle
-					</Button>
-					<Button
+					</button>
+					<button
 						onClick={handleUndo}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Undo
-					</Button>
-					<Button
+					</button>
+					<button
 						onClick={handleDraw}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Draw
-					</Button>
+					</button>
 					<IconButton sx={{ color: "white" }} onClick={handleSelector}>
 						<BackHandIcon />
 					</IconButton>
-					<Button
-						onClick={handleClear}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: "darkgray",
-							height: "20px",
-							color: "white",
-							margin: "2px",
-						}}
-					>
-						Clear
-					</Button>
-					<Button
-						onClick={handleAddText}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: "darkgray",
-							height: "20px",
-							color: "white",
-							margin: "2px",
-						}}
-					>
-						Add Text
-					</Button>
-
 					<input
 						type="range"
 						min="1"
@@ -291,32 +271,57 @@ const Canvas = () => {
 						}}
 					/>
 
-					<Button
+					<button
+						onClick={handleClear}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "30px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Clear
+					</button>
+					<button
+						onClick={handleAddText}
+						style={{
+							borderRadius: "20px",
+							backgroundColor: "darkgray",
+							height: "30px",
+							color: "white",
+							margin: "2px",
+						}}
+					>
+						Add Text
+					</button>
+
+					<button
 						onClick={handleSaveImage}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Save Image
-					</Button>
-					<Button
+					</button>
+					<button
 						onClick={handleExportAsPDF}
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "20px",
+							height: "30px",
 							color: "white",
 							margin: "2px",
 						}}
 					>
 						Export as PDF
-					</Button>
+					</button>
 				</div>
-			</Box>
+			</div>
 		</Box>
 	);
 };
