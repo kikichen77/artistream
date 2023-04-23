@@ -7,20 +7,84 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import VideocamOffIcon from "@mui/icons-material/VideocamOff";
 import SettingsPopUp from "./SettingsPopUp";
 import MicOffIcon from "@mui/icons-material/MicOff";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { IconButton } from "@mui/material";
 import EmoticonPalette from "./EmoticonPalette";
+import { Link } from "react-router-dom";
+
 
 const MeetingControls = () => {
-	const [isMute, setMute] = useState(false);
-	const [isCamOn, setCamOn] = useState(false);
+	const [cameraEnabled, setCameraEnabled] = useState(true);
+	const [micEnabled, setMicEnabled] = useState(true);
+	const [localStream, setLocalStream] = useState(null);
+	 
+	useEffect(() => {
+		async function getMediaStream() {
+			try {
+				const constraints = { video: true, audio: true };
+				const stream = await navigator.mediaDevices.getUserMedia(constraints);
+				setLocalStream(stream);
+				console.log("meeting stream", stream);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		getMediaStream();
+	}, []);
+	useEffect(() => {
+		if (localStream) {
+			const videoTrack = localStream.getVideoTracks()[0];
+			const audioTrack = localStream.getAudioTracks()[0];
+			console.log("videoTrack", videoTrack);
+			if (videoTrack) {
+				videoTrack.enabled = cameraEnabled;
+			}
+			if (audioTrack) {
+				audioTrack.enabled = micEnabled;
+			}
+		}
+	}, [localStream, cameraEnabled, micEnabled]);
 
-	const handleMicIconClick = () => {
-		setMute(!isMute);
+	const handleCameraClick = () => {
+		setCameraEnabled(!cameraEnabled);
 	};
-	const handleCamIconClick = () => {
-		setCamOn(!isCamOn);
+
+	const handleMicClick = () => {
+		setMicEnabled(!micEnabled);
 	};
+
+	// const handleCameraClick = () => {
+	// 	setCameraEnabled(!cameraEnabled);
+	// 	toggleCamera(localStream, setCameraEnabled);
+	// };
+	// const handleMicClick = () => {
+	// 	setMicEnabled(!micEnabled);
+	// 	toggleMic(localStream, setMicEnabled);
+	// };
+	// const toggleCamera = (localStream, setCameraEnabled) => {
+	// 	let videoTrack = localStream
+	// 		.getTracks()
+	// 		.find((track) => track.kind === "video");
+
+	// 	if (videoTrack.enabled) {
+	// 		videoTrack.enabled = false;
+	// 	} else {
+	// 		videoTrack.enabled = true;
+	// 	}
+	// 	setCameraEnabled(!cameraEnabled);
+	// };
+	// const toggleMic = (localStream, setMicEnabled) => {
+	// 	let audioTrack = localStream
+	// 		.getTracks()
+	// 		.find((track) => track.kind === "audio");
+
+	// 	if (audioTrack.enabled) {
+	// 		audioTrack.enabled = false;
+	// 	} else {
+	// 		audioTrack.enabled = true;
+	// 	}
+	// 	setMicEnabled(!micEnabled);
+	// };
 
 	return (
 		<>
@@ -52,17 +116,19 @@ const MeetingControls = () => {
 				<IconButton sx={{ color: "white" }}>
 					<EmoticonPalette />
 				</IconButton>
-				<IconButton sx={{ color: "white" }}>
+				{/* <IconButton sx={{ color: "white" }}>
 					<PersonAddAlt1Icon />
+				</IconButton> */}
+				<IconButton onClick={handleMicClick} sx={{ color: "white" }}>
+					{micEnabled ? <MicIcon /> : <MicOffIcon />}
 				</IconButton>
-				<IconButton sx={{ color: "white" }}>
-					<CallIcon color="red" />
-				</IconButton>
-				<IconButton onClick={handleMicIconClick} sx={{ color: "white" }}>
-					{isMute ? <MicOffIcon /> : <MicIcon />}
-				</IconButton>
-				<IconButton onClick={handleCamIconClick} sx={{ color: "white" }}>
-					{isCamOn ? <VideocamIcon /> : <VideocamOffIcon />}
+				<Link to="/">
+					<IconButton sx={{ color: "red" }}>
+						<CallIcon color="red" />
+					</IconButton>
+				</Link>
+				<IconButton onClick={handleCameraClick} sx={{ color: "white" }}>
+					{cameraEnabled ? <VideocamIcon /> : <VideocamOffIcon />}
 				</IconButton>
 				<IconButton sx={{ color: "white" }}>
 					<SettingsPopUp />

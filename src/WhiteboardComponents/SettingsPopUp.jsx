@@ -1,19 +1,14 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Typography from "@mui/material/Typography";
-import ContentCut from "@mui/icons-material/ContentCut";
-import ContentCopy from "@mui/icons-material/ContentCopy";
-import ContentPaste from "@mui/icons-material/ContentPaste";
-import Cloud from "@mui/icons-material/Cloud";
 import Menu from "@mui/material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Margin } from "@mui/icons-material";
+import { Margin, VolumeDown, VolumeUp } from "@mui/icons-material";
+import { Slider } from "@mui/material";
 
 const SettingsPopUp = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,7 +19,20 @@ const SettingsPopUp = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	const [inputVolume, setInputVolume] = React.useState(30);
+	const [outputVolume, setOutputVolume] = React.useState(50);
 
+	const handleInputVolumeChange = (event, newValue) => {
+		setInputVolume(newValue);
+		const audioTracks = stream.getAudioTracks();
+		audioTracks.forEach((track) => (track.volume = newValue / 100));
+	};
+
+	const handleOutputVolumeChange = (event, newValue) => {
+		setOutputVolume(newValue);
+		const audioElements = document.querySelectorAll("audio");
+		audioElements.forEach((element) => (element.volume = newValue / 100));
+	};
 	return (
 		<>
 			<SettingsIcon
@@ -50,44 +58,53 @@ const SettingsPopUp = () => {
 					marginTop: "-100px",
 				}}
 			>
-				<MenuItem onClick={handleClose}>Profile</MenuItem>
+				{/* <MenuItem onClick={handleClose}>Profile</MenuItem>
 				<MenuItem onClick={handleClose}>My account</MenuItem>
-				<MenuItem onClick={handleClose}>Logout</MenuItem>
+				<MenuItem onClick={handleClose}>Logout</MenuItem> */}
 				<Paper sx={{ width: 320, maxWidth: "100%", alignContent: "right" }}>
 					<MenuList>
-						<MenuItem onClick={handleClose}>
+						<MenuItem>
 							<ListItemIcon>
-								<ContentCut fontSize="small" />
+								<ListItemText primary="Input" />
+								<VolumeDown />
 							</ListItemIcon>
-							<ListItemText>Cut</ListItemText>
-							<Typography variant="body2" color="text.secondary">
-								⌘X
-							</Typography>
+							<Slider
+								value={inputVolume}
+								onChange={handleInputVolumeChange}
+								aria-labelledby="input-volume-slider"
+								sx={{ width: "150px" }}
+							/>
+							<ListItemIcon>
+								<VolumeUp />
+							</ListItemIcon>
 						</MenuItem>
-						<MenuItem onClick={handleClose}>
+						<MenuItem>
 							<ListItemIcon>
-								<ContentCopy fontSize="small" />
+								<ListItemText primary="Output" />
+								<VolumeDown />
 							</ListItemIcon>
-							<ListItemText>Copy</ListItemText>
-							<Typography variant="body2" color="text.secondary">
-								⌘C
-							</Typography>
-						</MenuItem>
-						<MenuItem onClick={handleClose}>
+							<Slider
+								value={outputVolume}
+								onChange={handleOutputVolumeChange}
+								aria-labelledby="output-volume-slider"
+								sx={{ width: "150px" }}
+							/>
 							<ListItemIcon>
-								<ContentPaste fontSize="small" />
+								<VolumeUp />
 							</ListItemIcon>
-							<ListItemText>Paste</ListItemText>
-							<Typography variant="body2" color="text.secondary">
-								⌘V
-							</Typography>
 						</MenuItem>
 						<Divider />
 						<MenuItem onClick={handleClose}>
 							<ListItemIcon>
-								<Cloud fontSize="small" />
+								<Margin fontSize="small" />
 							</ListItemIcon>
-							<ListItemText>Web Clipboard</ListItemText>
+							<ListItemText primary="Audio Source" />
+						</MenuItem>
+						<MenuItem onClick={handleClose}>
+							<ListItemIcon>
+								<Margin fontSize="small" />
+							</ListItemIcon>
+							<ListItemText primary="Video Source" />
 						</MenuItem>
 					</MenuList>
 				</Paper>
