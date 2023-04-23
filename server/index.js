@@ -14,13 +14,15 @@ app.use(cors());
 
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
-    
+      
     //Listens and logs the message to the console
     socket.on('message', (data) => {
       console.log(data);
     });
+
+    socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
     
-    //sends the message to all the users on the server
+    //sends the message to all the users on the server 
     socket.on('message', (data) => {
       socketIO.emit('messageResponse', data);
     });

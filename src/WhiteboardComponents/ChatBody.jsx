@@ -2,15 +2,14 @@ import styles from "./WhiteboardStyles/ChatBoxStyles.module.css"
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ChatBody({messages}) {
+export default function ChatBody({messages, lastMessageRef, typingStatus}) {
     const navigate = useNavigate();
+
     const handleLeaveChat = () => {
         localStorage.removeItem('username');
         navigate('/');
         window.location.reload();
     };
-    console.log(localStorage.getItem('username'));
-    
     
     return (
         <>
@@ -37,8 +36,10 @@ export default function ChatBody({messages}) {
                 )}
 
                 <div className="message__status">
-                    <p></p>
+                    <p>{typingStatus}</p>
                 </div>
+
+                <div ref={lastMessageRef} />
             </div>
         </>
     )
