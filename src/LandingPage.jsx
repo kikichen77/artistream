@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./landingPage.css";
 import { Settings, AddCircle } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DefaultImage from "./sample.png";
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -14,15 +15,17 @@ const LandingPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('username', username);
-    navigate('/whiteboard');
+    // This should have a unique Id
+    navigate(`whiteboard/${username}`);
   };
 
   useEffect(() => {
     if (create) {
       if (!username) {
         errorMessage[0] = "Username is empty.";
-        alert(errorMessage[0])
-        setCreateState(false)
+        // Can add mui pop up to notify
+        alert(errorMessage[0]);
+        setCreateState(false);
       } else if (!image) {
         errorMessage[1] = "Select your account image.";
       }
@@ -61,7 +64,7 @@ const LandingPage = () => {
       </div>
 
       {/* Input username to display on the main page*/}
-      <form className="inputWrap usernameInputWrap" onSubmit={handleSubmit}>
+      <form className="inputWrap usernameInputWrap">
         <input
           type="text"
           id="username"
@@ -85,7 +88,7 @@ const LandingPage = () => {
         />
       <span></span>
       </span>
-      <button className="btn joinRoomButton" onClick={() => joinRoom(roomCode)}>
+      <button className="btn joinRoomButton" onClick={(e) => {joinRoom(roomCode); handleSubmit(e);}}>
         Join room
       </button>
       <br />
@@ -93,7 +96,7 @@ const LandingPage = () => {
       {/* Create a new room */}
       {username ? (
         <Link to={`whiteboard/${username}`}>
-          <button className="btn createRoomButton"onClick={() => {setCreateState(true)}}>
+          <button className="btn createRoomButton"onClick={(e) => {setCreateState(true); handleSubmit(e);}}>
             Create Room
           </button>
         </Link>

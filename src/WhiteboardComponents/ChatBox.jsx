@@ -1,14 +1,23 @@
 import styles from "./WhiteboardStyles/ChatBoxStyles.module.css"
-import TextField from '@mui/material/TextField';
+import ChatBody from "./ChatBody"
+import ChatFooter from "./ChatFooter"
+import React, { useEffect, useState } from 'react';
 
-export default function ChatBox() {
+export default function ChatBox({socket}) {
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        socket.on('messageResponse', (data) => setMessages([...messages, data]));
+    }, [socket, messages]);
+
     return (
         <div className={styles.chatboxBox}>
-            
             <div className={styles.chatDisplay}>
-                <p className={styles.chatboxText}>Chat Box</p>
+                <ChatBody messages={messages}/>
             </div>
-            <TextField className={styles.textField} label="Enter text here..." variant="filled" size="small"/>
+            <div className={styles.textField}>
+                <ChatFooter  socket={socket}/>
+            </div>
         </div>
     )
 }

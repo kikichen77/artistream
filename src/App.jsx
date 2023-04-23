@@ -17,7 +17,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage/>}exact />
-        <Route path="whiteboard/:id" element={<WhiteboardPage createRoomComponent={<CreateRoom/>}/>}> 
+        <Route path="whiteboard/:id" element={<WhiteboardPage createRoomComponent={<CreateRoom/>} socket={socket}/>}> 
           
         </Route>
         
