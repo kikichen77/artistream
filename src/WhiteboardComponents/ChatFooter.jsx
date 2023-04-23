@@ -1,4 +1,6 @@
+import styles from "./WhiteboardStyles/ChatBoxStyles.module.css"
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
 
 export default function ChatFooter({socket}) {
   const [message, setMessage] = useState('');
@@ -21,17 +23,19 @@ export default function ChatFooter({socket}) {
   };
 
   return (
-    <div className="chat__footer">
-      <form className="form" onSubmit={handleSendMessage}>
-        <input
+    <div className={styles.chatboxFooter}>
+      <form className={styles.chatboxForm} onSubmit={handleSendMessage}>
+        <TextField 
+          className={styles.textField} 
+          label="Message the room" 
+          variant="filled" 
+          size="small"
           type="text"
-          placeholder="Write message"
-          className="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleTyping}
         />
-        <button className="sendBtn">Send</button>
+        <button className={styles.chatboxBtn}>Send</button>
       </form>
     </div>
   );

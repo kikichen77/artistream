@@ -13,29 +13,30 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
     
     return (
         <>
-            <header className="chat__mainHeader">
+            <header className={styles.chatboxHeader}>
+                <p>Room Chat</p>
             </header>
 
-            <div className="message__container">
+            <div className={styles.chatboxDisplay}>
                 {messages.map((message) =>
                 message.name === localStorage.getItem('username') ? (
-                    <div className="message__chats" key={message.id}>
-                    <p className="sender__name">You</p>
-                    <div className="message__sender">
-                        <p>{message.text}</p>
-                    </div>
+                    <div key={message.id}>
+                        <p className={styles.chatboxTextUserRight}>You</p>
+                        <div className={styles.chatboxRight}>
+                            <p>{message.text}</p>
+                        </div>
                     </div>
                 ) : (
-                    <div className="message__chats" key={message.id}>
-                    <p>{message.name}</p>
-                    <div className="message__recipient">
-                        <p>{message.text}</p>
-                    </div>
+                    <div key={message.id}>
+                        <p className={styles.chatboxTextUserLeft}>{message.name}</p>
+                        <div className={styles.chatboxLeft}>
+                            <p>{message.text}</p>
+                        </div>
                     </div>
                 )
                 )}
 
-                <div className="message__status">
+                <div className={styles.messageStatus}>
                     <p>{typingStatus}</p>
                 </div>
 

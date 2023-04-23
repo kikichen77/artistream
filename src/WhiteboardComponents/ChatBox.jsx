@@ -2,8 +2,10 @@ import styles from "./WhiteboardStyles/ChatBoxStyles.module.css"
 import ChatBody from "./ChatBody"
 import ChatFooter from "./ChatFooter"
 import React, { useEffect, useState, useRef } from 'react';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
-export default function ChatBox({socket}) {
+export default function ChatBox({socket, handleToggleDrawer}) {
     const [messages, setMessages] = useState([]);
     const [typingStatus, setTypingStatus] = useState('');
     const lastMessageRef = useRef(null);
@@ -23,6 +25,11 @@ export default function ChatBox({socket}) {
 
     return (
         <div className={styles.chatboxBox}>
+            <div className={styles.chatboxClose}>
+                <IconButton onClick={handleToggleDrawer(false)}>
+                    <CloseIcon/>
+                </IconButton>
+            </div>
             <div className={styles.chatDisplay}>
                 <ChatBody 
                     messages={messages} 
