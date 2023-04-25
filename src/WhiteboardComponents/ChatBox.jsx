@@ -23,13 +23,16 @@ export default function ChatBox({socket, handleToggleDrawer}) {
         socket.on('typingResponse', (data) => setTypingStatus(data));
     }, [socket]);
 
-    return (
-        <div className={styles.chatboxBox}>
-            <div className={styles.chatboxClose}>
+    /*
+    <div className={styles.chatboxClose}>
                 <IconButton onClick={handleToggleDrawer(false)}>
                     <CloseIcon/>
                 </IconButton>
             </div>
+    */
+
+    return (
+        <div className={styles.chatboxBox}>
             <div className={styles.chatDisplay}>
                 <ChatBody 
                     messages={messages} 
