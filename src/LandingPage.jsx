@@ -3,20 +3,29 @@ import "./landingPage.css";
 import { Settings, AddCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import DefaultImage from "./sample.png";
-import WhiteboardPage from "./WhiteboardComponents/WhiteboardPage.jsx"
+import { useNavigate } from 'react-router-dom';
 
-
-const LandingPage = ({username, setUsername}) => {
-  
+const LandingPage = () => {
+  const navigate = useNavigate();
   const [create, setCreateState] = useState(false);
   const [image, setImage] = useState(null);
+  const [username, setUsername] = useState('');
   let errorMessage = [];
-  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem('username', username);
+    // This should have a unique Id
+    navigate(`whiteboard/${username}`);
+  };
+
   useEffect(() => {
     if (create) {
       if (!username) {
         errorMessage[0] = "Username is empty.";
-        setCreateState(false)
+        // Can add mui pop up to notify
+        alert(errorMessage[0]);
+        setCreateState(false);
       } else if (!image) {
         errorMessage[1] = "Select your account image.";
       }
@@ -55,17 +64,18 @@ const LandingPage = ({username, setUsername}) => {
       </div>
 
       {/* Input username to display on the main page*/}
-      <span className="inputWrap usernameInputWrap">
+      <form className="inputWrap usernameInputWrap">
         <input
           type="text"
           id="username"
           placeholder="Enter username"
           className="inputArea"
+          value={username}
           onChange={(event) => {
             setUsername(event.target.value);
           }}
         />
-      </span>
+      </form>
       <br />
 
       {/* Input a room code and join a room */}
@@ -78,37 +88,20 @@ const LandingPage = ({username, setUsername}) => {
         />
       <span></span>
       </span>
-      <button className="btn joinRoomButton" onClick={() => joinRoom(roomCode)}>
+      <button className="btn joinRoomButton" onClick={(e) => {joinRoom(roomCode); handleSubmit(e);}}>
         Join room
       </button>
       <br />
-      
-      {/* Create a new room */}
-      {/* Currently an issue with this  
-      <Link to={`/room/${username}`}>
-        <button
-          className="btn createRoomButton"
-          onClick={() => {setCreateState(true)}}
-          disabled={!username || !image}
-        >
-          Create room
-        </button>
-      </Link>
-      */}
 
       {/* Create a new room */}
       {username ? (
         <Link to={`whiteboard/${username}`}>
-          <button
-            className="btn createRoomButton"onClick={() => {setCreateState(true)}}
-          >
+          <button className="btn createRoomButton"onClick={(e) => {setCreateState(true); handleSubmit(e);}}>
             Create Room
           </button>
         </Link>
       ) : (
-          <button
-            className="btn createRoomButton"onClick={() => {setCreateState(true)}}
-          >
+          <button className="btn createRoomButton"onClick={() => {setCreateState(true)}}>
             Create Room
           </button>
       )}

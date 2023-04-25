@@ -1,14 +1,48 @@
 import styles from "./WhiteboardStyles/ChatBoxStyles.module.css"
-import TextField from '@mui/material/TextField';
+import ChatBody from "./ChatBody"
+import ChatFooter from "./ChatFooter"
+import React, { useEffect, useState, useRef } from 'react';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
-export default function ChatBox() {
+export default function ChatBox({socket, handleToggleDrawer}) {
+    const [messages, setMessages] = useState([]);
+    const [typingStatus, setTypingStatus] = useState('');
+    const lastMessageRef = useRef(null);
+
+    useEffect(() => {
+        socket.on('messageResponse', (data) => setMessages([...messages, data]));
+    }, [socket, messages]);
+
+    useEffect(() => {
+        // Scroll to bottom every time messages change
+        lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
+    useEffect(() => {
+        socket.on('typingResponse', (data) => setTypingStatus(data));
+    }, [socket]);
+
+    /*
+    <div className={styles.chatboxClose}>
+                <IconButton onClick={handleToggleDrawer(false)}>
+                    <CloseIcon/>
+                </IconButton>
+            </div>
+    */
+
     return (
         <div className={styles.chatboxBox}>
-            
             <div className={styles.chatDisplay}>
-                <p className={styles.chatboxText}>Chat Box</p>
+                <ChatBody 
+                    messages={messages} 
+                    lastMessageRef={lastMessageRef}
+                    typingStatus={typingStatus}
+                />
             </div>
-            <TextField className={styles.textField} label="Enter text here..." variant="filled" size="small"/>
+            <div className={styles.textField}>
+                <ChatFooter  socket={socket}/>
+            </div>
         </div>
     )
 }
