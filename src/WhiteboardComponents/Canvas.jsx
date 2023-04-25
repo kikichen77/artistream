@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useLayoutEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { IconButton } from "@mui/material";
 import { fabric } from "fabric";
@@ -8,7 +8,12 @@ import BackHandIcon from "@mui/icons-material/BackHand";
 
 const Canvas = () => {
 	const canvasRef = useRef(null);
+
 	let canvas = null;
+	const handleResize = () => {
+		canvas.width = canvas.parentElement.clientWidth;
+	};
+	window.onresize = handleResize;
 
 	useEffect(() => {
 		canvas = new fabric.Canvas(canvasRef.current);
@@ -170,18 +175,32 @@ const Canvas = () => {
 				marginRight: "20px",
 			}}
 		>
-			<div>
-				<canvas
-					ref={canvasRef}
-					width={1300}
-					height={600}
-					style={{
-						borderRadius: "20px",
-						margin: "5px",
-					}}
-				/>
+			<div
+				style={{
+					position: "relative",
+					justifyContent: "center",
+					alignItems: "center",
+					width: "90%",
+				}}
+			>
 				<div
 					style={{
+						borderRadius: "20px",
+						marginTop: "10px",
+						backgroundColor: "#ffffff",
+					}}
+				>
+					<canvas
+						ref={canvasRef}
+						height={600}
+						style={{
+							borderRadius: "20px",
+						}}
+					/>
+				</div>
+				<div
+					style={{
+						backgroundColor: "rgb(37, 42, 69)",
 						margin: "20px",
 						display: "flex",
 						justifyContent: "center",
@@ -192,9 +211,9 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
-							margin: "2px",
+							margin: ".5vh",
 						}}
 					>
 						Add Rectangle
@@ -204,7 +223,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							width: "120px",
 							color: "white",
 							margin: "2px",
@@ -217,7 +236,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -229,7 +248,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -241,7 +260,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -276,7 +295,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -288,7 +307,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -301,7 +320,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}
@@ -313,7 +332,7 @@ const Canvas = () => {
 						style={{
 							borderRadius: "20px",
 							backgroundColor: "darkgray",
-							height: "30px",
+							height: "35px",
 							color: "white",
 							margin: "2px",
 						}}

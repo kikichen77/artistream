@@ -7,17 +7,16 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import VideocamOffIcon from "@mui/icons-material/VideocamOff";
 import SettingsPopUp from "./SettingsPopUp";
 import MicOffIcon from "@mui/icons-material/MicOff";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
 import EmoticonPalette from "./EmoticonPalette";
 import { Link } from "react-router-dom";
-
 
 const MeetingControls = () => {
 	const [cameraEnabled, setCameraEnabled] = useState(true);
 	const [micEnabled, setMicEnabled] = useState(true);
 	const [localStream, setLocalStream] = useState(null);
-	 
+
 	useEffect(() => {
 		async function getMediaStream() {
 			try {
@@ -99,12 +98,12 @@ const MeetingControls = () => {
 					position: "flex",
 					marginTop: "20px",
 					marginRight: "20px",
+					marginBottom: "20px",
 					padding: "10px",
 					justifyContent: "center",
 					alignItems: "center",
 					display: "flex",
 					color: "white",
-					position: "relative",
 				}}
 			>
 				{/* <IconButton sx={{ color: "white" }}>
