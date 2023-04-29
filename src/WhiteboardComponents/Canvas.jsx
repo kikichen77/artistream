@@ -3,21 +3,22 @@ import React, { useRef, useEffect, useLayoutEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { IconButton } from "@mui/material";
 import { fabric } from "fabric";
-
 import BackHandIcon from "@mui/icons-material/BackHand";
 
 const Canvas = () => {
 	const canvasRef = useRef(null);
+	const containerRef = useRef(null);
 
 	let canvas = null;
-	const handleResize = () => {
-		canvas.width = canvas.parentElement.clientWidth;
-	};
-	window.onresize = handleResize;
 
 	useEffect(() => {
-		canvas = new fabric.Canvas(canvasRef.current);
-		canvas.isDrawingMode = true;
+		const container = containerRef.current;
+		const { width } = container.getBoundingClientRect();
+
+		canvas = new fabric.Canvas(canvasRef.current, {
+			width,
+		});
+
 		canvas.freeDrawingBrush.width = 5;
 
 		canvas.on("object:added", () => {
@@ -63,6 +64,12 @@ const Canvas = () => {
 				obj.lastScaleY = obj.scaleY;
 			}
 		});
+		const handleWindowResize = () => {
+			const { width } = container.getBoundingClientRect();
+			canvas.setDimensions({ width });
+		};
+
+		window.addEventListener("resize", handleWindowResize);
 		return () => {
 			canvas.dispose();
 			canvas = null;
@@ -75,11 +82,11 @@ const Canvas = () => {
 			canvas.remove(objects[objects.length - 1]);
 		}
 	};
-	const handleSelector = () => {
-		canvas.isDrawingMode = false;
-	};
 	const handleDraw = () => {
 		canvas.isDrawingMode = true;
+	};
+	const handleSelector = () => {
+		canvas.isDrawingMode = false;
 	};
 	const handleClear = () => {
 		canvas.clear();
@@ -184,6 +191,7 @@ const Canvas = () => {
 				}}
 			>
 				<div
+					ref={containerRef}
 					style={{
 						borderRadius: "20px",
 						marginTop: "10px",
@@ -194,6 +202,8 @@ const Canvas = () => {
 						ref={canvasRef}
 						height={600}
 						style={{
+							width: "100%",
+
 							borderRadius: "20px",
 						}}
 					/>
