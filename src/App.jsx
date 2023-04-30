@@ -1,29 +1,23 @@
 import React from "react";
-import "./App.css";
-import LandingPage from "./LandingPage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreateRoom from './createroom';
-import {useState } from 'react';
-import WhiteboardPage from "./WhiteboardComponents/WhiteboardPage";
-import socketIO from 'socket.io-client';
+import { Route, Routes } from 'react-router-dom';
+import ConnectPage from "./ConnectPage";
+import PageLayout from "./PageLayout";
+import ErrorPage from "./ErrorPage";
+import CallPage from "./CallPage";
+import { Navigate } from "react-router-dom";
 
-const socket = socketIO.connect('http://localhost:4000');
-
-const App = () => {
-  // const { user } = useContext(AuthContext);
-  //const [username, setUsername] = useState("");
-  //<Route path={`whiteboard/room/${username}`} element={<CreateRoom username={username}/>} />
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage/>}exact />
-        <Route path="whiteboard/:id" element={<WhiteboardPage createRoomComponent={<CreateRoom/>} socket={socket}/>}> 
-          
-        </Route>
-        
-
-      </Routes>
-    </BrowserRouter>
+        <React.Fragment>
+        <Routes>
+          <Route path="/" element={<PageLayout />}>
+            <Route index element={<Navigate to="connect" replace={true} />}></Route>
+            <Route path="connect" element={<ConnectPage />} />
+            <Route path=":id" element={<CallPage />} />
+            <Route path="error" element={<ErrorPage />}/>
+          </Route>
+        </Routes>
+      </React.Fragment>
   );
 }
 
