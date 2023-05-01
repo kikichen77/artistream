@@ -14,8 +14,6 @@ export default function CallPage() {
   
 
   return (
-      <div>
-          <Room props={ROOM_ID}/>
-      </div>
+      <Room props={ROOM_ID}/>
   );
 }
