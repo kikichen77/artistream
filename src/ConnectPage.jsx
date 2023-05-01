@@ -8,7 +8,12 @@ export default function ConnectPage() {
     const navigate = useNavigate();
 
     const submitRoom = () => {
-      navigate("/"+roomId.current.value, { state: { ROOM_ID: roomId.current.value } })
+      if (roomId.current.value == "connect"){
+        alert("Cannot use that name")
+      }
+      else{
+        navigate("/"+roomId.current.value, { state: { ROOM_ID: roomId.current.value } })
+      }
     }
   
     return (

@@ -1,6 +1,5 @@
 import Peer from 'peerjs';
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import SocketIO from 'socket.io-client';
 
 export default function Room({props}){
