@@ -8,7 +8,7 @@ const io = require('socket.io')(server, {cors: {
 io.on('connection', socket => {
 
   socket.on('message', (data) => {
-    socket.emit('messageResponse', data);
+    io.emit('messageResponse', data);
   });
 
   socket.on('message', (data) => {
