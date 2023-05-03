@@ -17,6 +17,7 @@ export default function CallPage() {
   let socket = SocketIO("http://localhost:3000")
   return (
     <React.Fragment>
+      <h1>{ROOM_ID}</h1>
       <Room props={ROOM_ID}/>
       <ChatBox socket={socket}/>
     </React.Fragment>
