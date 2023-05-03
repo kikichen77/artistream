@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import Room from "./VideoComponent";
 import  { Navigate } from "react-router-dom";
-import ChatBox from "./ChatBox"
 import SocketIO from 'socket.io-client';
 import React from 'react';
+import Room from "../Components/VideoComponent";
+import ChatBox from "../Components/Chat/ChatBox";
 
 export default function CallPage() {
   const {state} = useLocation();

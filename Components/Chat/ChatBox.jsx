@@ -3,6 +3,7 @@ import ChatBody from "./ChatBody"
 import ChatFooter from "./ChatFooter"
 import React, { useEffect, useState, useRef } from 'react';
 
+
 export default function ChatBox({socket}) {
     const [messages, setMessages] = useState([]);
     const [typingStatus, setTypingStatus] = useState('');

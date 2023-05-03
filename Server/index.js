@@ -6,9 +6,9 @@ const io = require('socket.io')(server, {cors: {
 }})
 
 io.on('connection', socket => {
-  
+
   socket.on('message', (data) => {
-    socketIO.emit('messageResponse', data);
+    socket.emit('messageResponse', data);
   });
 
   socket.on('message', (data) => {
