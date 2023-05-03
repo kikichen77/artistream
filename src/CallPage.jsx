@@ -4,6 +4,7 @@ import SocketIO from 'socket.io-client';
 import React from 'react';
 import Room from "../Components/VideoComponent";
 import ChatBox from "../Components/Chat/ChatBox";
+import CopyID from "../Components/CopyComponent";
 
 export default function CallPage() {
   const {state} = useLocation();
@@ -17,9 +18,9 @@ export default function CallPage() {
   let socket = SocketIO("http://localhost:3000")
   return (
     <React.Fragment>
-      <h1>{ROOM_ID}</h1>
+      <CopyID props={ROOM_ID}/>
       <Room props={ROOM_ID}/>
       <ChatBox socket={socket}/>
     </React.Fragment>
   );
-}
+} 
