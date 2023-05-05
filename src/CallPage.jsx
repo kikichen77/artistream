@@ -5,8 +5,11 @@ import React from 'react';
 import Room from "../Components/VideoComponent";
 import ChatBox from "../Components/Chat/ChatBox";
 import CopyID from "../Components/CopyComponent";
+<<<<<<< HEAD
 import Canvas from "../Components/Canvas/Canvas";
 
+=======
+>>>>>>> def742ef236e614425bc3d32a85e09605938febc
 
 export default function CallPage() {
   const {state} = useLocation();
@@ -22,8 +25,15 @@ export default function CallPage() {
     <React.Fragment>
       <CopyID props={ROOM_ID}/>
       <Room props={ROOM_ID}/>
+<<<<<<< HEAD
     <Canvas socket={socket}/>
       <ChatBox socket={socket}/>
     </React.Fragment>
   );
 } 
+=======
+      <ChatBox socket={socket}/>
+    </React.Fragment>
+  );
+} 
+>>>>>>> def742ef236e614425bc3d32a85e09605938febc
