@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "start vite & start nodemon Server/index.js & start peerjs --port 3001",
+    "devmac": "vite &  nodemon Server/index.js & peerjs --port 3001",
     "build": "vite build",
     "preview": "vite preview"
   },
