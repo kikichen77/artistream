@@ -16,7 +16,7 @@ export default function ConnectPage() {
 
     const submitName = (e) => {
       e.preventDefault();
-      sessionStorage.setItem('username', userName.current.value);
+      localStorage.setItem('username', userName.current.value);
       alert('username set')
     };
 
