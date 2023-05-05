@@ -6,7 +6,7 @@ import { fabric } from "fabric";
 import BackHandIcon from "@mui/icons-material/BackHand";
 import { v4 as uuidv4 } from "uuid";
 
-const Canvas = ({ socket }) => {
+const Canvas = ({socket, theme}) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -291,7 +291,7 @@ const Canvas = ({ socket }) => {
   return (
     <Box
       sx={{
-        backgroundColor: "rgb(37, 42, 69)",
+        backgroundColor: `${theme ? "rgb(132, 132, 143)" : "rgb(37, 42, 69)"}`,
         borderRadius: "20px",
         display: "flex",
         justifyContent: "center",
@@ -327,20 +327,22 @@ const Canvas = ({ socket }) => {
         </div>
         <div
           style={{
-            backgroundColor: "rgb(37, 42, 69)",
+            backgroundColor: `${theme ? "rgb(132, 132, 143)" : "rgb(37, 42, 69)"}`,
             margin: "20px",
             display: "flex",
             justifyContent: "center",
+            border: "none",
           }}
         >
           <button
             onClick={handleAddRectangle}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: ".5vh",
+              border: "none",
             }}
           >
             Add Rectangle
@@ -349,11 +351,12 @@ const Canvas = ({ socket }) => {
             onClick={handleAddCircle}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
               width: "120px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Add Circle
@@ -362,10 +365,11 @@ const Canvas = ({ socket }) => {
             onClick={handleAddTriangle}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Add Triangle
@@ -374,10 +378,11 @@ const Canvas = ({ socket }) => {
             onClick={handleUndo}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Undo
@@ -386,10 +391,11 @@ const Canvas = ({ socket }) => {
             onClick={handleDraw}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Draw
@@ -410,10 +416,11 @@ const Canvas = ({ socket }) => {
             onChange={handleBrushColorChange}
             style={{
               borderRadius: "10px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               width: "30px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border:`.5px solid ${theme ? "rgb(37, 42, 69)" : "rgb(37, 42, 69)"}`,
             }}
           />
 
@@ -421,10 +428,11 @@ const Canvas = ({ socket }) => {
             onClick={handleClear}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Clear
@@ -433,10 +441,11 @@ const Canvas = ({ socket }) => {
             onClick={handleAddText}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Add Text
@@ -446,10 +455,11 @@ const Canvas = ({ socket }) => {
             onClick={handleSaveImage}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Save Image
@@ -458,10 +468,11 @@ const Canvas = ({ socket }) => {
             onClick={handleExportAsPDF}
             style={{
               borderRadius: "20px",
-              backgroundColor: "darkgray",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
               height: "35px",
-              color: "white",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
               margin: "2px",
+              border: "none",
             }}
           >
             Export as PDF

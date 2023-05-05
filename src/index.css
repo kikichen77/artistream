@@ -10,3 +10,13 @@
   height:100%;
   object-fit: cover;
 }
+
+.dark {
+  background-color: rgb(44, 45, 53);
+  color: white;
+}
+
+.light {
+  background-color: white;
+  color: black;
+}

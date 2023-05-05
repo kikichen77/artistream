@@ -4,7 +4,7 @@ import ChatFooter from "./ChatFooter"
 import React, { useEffect, useState, useRef } from 'react';
 
 
-export default function ChatBox({socket}) {
+export default function ChatBox({socket, theme}) {
     const [messages, setMessages] = useState([]);
     const [typingStatus, setTypingStatus] = useState('');
     const lastMessageRef = useRef(null);
@@ -23,7 +23,7 @@ export default function ChatBox({socket}) {
     }, [socket]);
 
     return (
-        <div className={styles.chatboxBox}>
+        <div className={`${theme ? styles.darkChatboxBox : styles.chatboxBox}`}>
             <div className={styles.chatDisplay}>
                 <ChatBody 
                     messages={messages} 
