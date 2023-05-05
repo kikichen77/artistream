@@ -7,10 +7,10 @@ export default function ChatFooter({socket}) {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (message.trim() && localStorage.getItem('username')) {
+    if (message.trim() && sessionStorage.getItem('username')) {
         socket.emit('message', {
             text: message,
-            name: localStorage.getItem('username'),
+            name: sessionStorage.getItem('username'),
             id: `${socket.id}${Math.random()}`,
             socketID: socket.id,
       });

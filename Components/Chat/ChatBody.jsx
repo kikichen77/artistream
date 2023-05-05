@@ -6,7 +6,7 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
     const navigate = useNavigate();
 
     const handleLeaveChat = () => {
-        localStorage.removeItem('username');
+        sessionStorage.removeItem('username');
         navigate('/');
         window.location.reload();
     };
@@ -19,7 +19,7 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
 
             <div className={styles.chatboxDisplay}>
                 {messages.map((message) =>
-                message.name === localStorage.getItem('username') ? (
+                message.name === sessionStorage.getItem('username') ? (
                     <div key={message.id}>
                         <p className={styles.chatboxTextUserRight}>You</p>
                         <div className={styles.chatboxRight}>

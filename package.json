@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite &  nodemon Server/index.js & peerjs --port 3001",
+    "dev": "start vite & start nodemon Server/index.js & start peerjs --port 3001",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -11,7 +11,6 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@mui/material": "^5.12.3",
-<<<<<<< HEAD
     "@mui/icons-material": "^5.11.16",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -23,15 +22,6 @@
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-=======
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "nodemon": "^2.0.22",
-    "peer": "^1.0.0",
-    "peerjs": "^1.4.7",
-    "react": "^18.2.0",
-    "react-copy-to-clipboard": "^5.1.0",
->>>>>>> def742ef236e614425bc3d32a85e09605938febc
     "react-router-dom": "^6.10.0",
     "simple-peer": "^9.11.1",
     "socket.io": "^4.6.1",
