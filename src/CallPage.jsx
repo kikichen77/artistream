@@ -8,7 +8,7 @@ import CopyID from "../Components/CopyComponent";
 import Canvas from "../Components/Canvas/Canvas";
 
 
-export default function CallPage() {
+export default function CallPage({theme}) {
   const {state} = useLocation();
   if (!state){
     return <Navigate to="/error"/>
@@ -22,8 +22,8 @@ export default function CallPage() {
     <React.Fragment>
       <CopyID props={ROOM_ID}/>
       <Room props={ROOM_ID}/>
-      <Canvas socket={socket}/>
-      <ChatBox socket={socket}/>
+      <Canvas socket={socket} theme={theme}/>
+      <ChatBox socket={socket} theme={theme}/>
     </React.Fragment>
   );
 } 

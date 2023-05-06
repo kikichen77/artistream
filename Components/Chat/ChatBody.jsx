@@ -17,7 +17,7 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
                 <p>Room Chat</p>
             </header>
 
-            <div className={styles.chatboxDisplay}>
+            <div className={styles.darkChatboxDisplay}>
                 {messages.map((message) =>
                 message.name === sessionStorage.getItem('username') ? (
                     <div key={message.id}>

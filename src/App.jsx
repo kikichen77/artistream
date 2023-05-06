@@ -1,23 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from 'react-router-dom';
 import ConnectPage from "./ConnectPage";
 import PageLayout from "./PageLayout";
 import ErrorPage from "./ErrorPage";
 import CallPage from "./CallPage";
 import { Navigate } from "react-router-dom";
+import "./index.css";
+
 
 function App() {
+  const [theme, setTheme] = useState(false);
+  
+  const handleClick = () => {
+    setTheme(!theme);
+  };
+  
+  useEffect(() => {
+    if (theme) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
-        <React.Fragment>
-        <Routes>
-          <Route path="/" element={<PageLayout />}>
-            <Route index element={<Navigate to="connect" replace={true} />}></Route>
-            <Route path="connect" element={<ConnectPage />} />
-            <Route path=":id" element={<CallPage />} />
-            <Route path="error" element={<ErrorPage />}/>
-          </Route>
-        </Routes>
-      </React.Fragment>
+    <React.Fragment>
+      <button onClick={handleClick}>{theme ? "Light" : "Dark"}</button>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route index element={<Navigate to="connect" replace={true} />}></Route>
+          <Route path="connect" element={<ConnectPage />} />
+          <Route path=":id" element={<CallPage {...{theme}}/>} />
+          <Route path="error" element={<ErrorPage />}/>
+        </Route>
+      </Routes>
+    </React.Fragment>
   );
 }
 
