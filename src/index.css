@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 300);
   grid-auto-rows: 300;
-
 }
 
 .video-element{
@@ -11,6 +10,7 @@
   object-fit: cover;
 }
 
+/* Dark & Light mode */
 .dark {
   background-color: rgb(44, 45, 53);
   color: white;
@@ -19,4 +19,14 @@
 .light {
   background-color: white;
   color: black;
+}
+
+/* frame */
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }

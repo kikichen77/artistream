@@ -2,8 +2,19 @@ import React from "react"
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { Form, 
+         LogoImage,
+         Input, 
+         InputDark, 
+         Button, 
+         ButtonDark, 
+         WrapperCol, 
+         WrapperRow 
+        } from "../Components/MarkupComponent";
+import logoImage from './assets/HilariousHuskies.png';
 
-export default function ConnectPage() {
+
+export default function ConnectPage({theme}) {
     const roomId = useRef(null);
     const userName = useRef(null);
     const navigate = useNavigate();
@@ -11,14 +22,15 @@ export default function ConnectPage() {
     const makeRoom = (e) => {
       e.preventDefault();
       const makeRoomId = uuidv4();
+      sessionStorage.setItem('username', userName.current.value);
       navigate("/room", { state: { ROOM_ID: makeRoomId } })
     }
 
-    const submitName = (e) => {
-      e.preventDefault();
-      sessionStorage.setItem('username', userName.current.value);
-      alert('username set')
-    };
+    // const submitName = (e) => {
+    //   e.preventDefault();
+    //   sessionStorage.setItem('username', userName.current.value);
+    //   alert('username set')
+    // };
 
     const submitRoom = (e) => {
       e.preventDefault();
@@ -26,29 +38,54 @@ export default function ConnectPage() {
         alert("Cannot use that name")
       }
       else{
+        sessionStorage.setItem('username', userName.current.value);
         navigate("/room", { state: { ROOM_ID: roomId.current.value } })
       }
     }
   
     return (
-    <div>
-      <h1>Username</h1>
-        <form onSubmit={submitName}>
+    <WrapperCol>
+      <LogoImage src={logoImage}/>
+      {/* <h1>Username</h1> */}
+      <Form onSubmit={submitRoom}>
+        <WrapperCol>
+          {theme ?
+          <>
             <label>
-              <input type="text" ref={userName} />
+              <InputDark type="text" ref={userName} placeholder="Enter username" />
             </label>
-            <input type="submit"/>
-        </form>
-
-      <h1>Make/Join Room</h1>
-        <form onSubmit={submitRoom}>
+            <br />
             <label>
-              <input type="text" ref={roomId} />
+              <InputDark type="text" ref={roomId} placeholder="Enter room ID" />
             </label>
-            <input type="submit" value="Join Room"/>
-        </form>
-
-        <input type="button" onClick={makeRoom} value = "Make Room"/>
-    </div>
+          </>
+          :
+          <>
+            <label>
+              <Input type="text" ref={userName} placeholder="Enter username" />
+            </label>
+            <br />
+            <label>
+              <Input type="text" ref={roomId} placeholder="Enter room ID" />
+            </label>
+          </>
+          }
+          </WrapperCol>
+          <br />
+          <WrapperRow>
+            {theme ? 
+            <>
+              <ButtonDark type="submit" value="Join Room" />
+              <ButtonDark type="button" onClick={makeRoom} value = "Make Room"/>
+            </>
+            :
+            <>
+              <Button type="submit" value="Join Room" />
+              <Button type="button" onClick={makeRoom} value = "Make Room"/>
+            </>
+            }
+          </WrapperRow>
+      </Form>
+    </WrapperCol>
     )
 }
