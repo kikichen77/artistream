@@ -73,21 +73,30 @@ const Canvas = ({socket, theme}) => {
           canvas.getWidth() - obj.width / 2
         );
       }
+      const movingData = {
+        id: obj.id,
+        top: obj.top,
+        left: obj.left
+      };
+      socket.emit("object-moving", movingData);
     });
 
     socket.on("object-moving", (data) => {
       const object = canvas.getObjects().find((obj) => obj.id === data.id);
-      if (object && object.type === data.type) {
+      if (object) {
         object.set({
           left: data.left,
           top: data.top,
         });
+        canvas.renderAll();
       }
     });
 
     const handleCanvasChange = (e) => {
-      const pathData = e.path.toObject();
-      socket.emit("canvas-data", pathData);
+    const path = e.path||e.target
+     path.id = uuidv4(); 
+    const pathData = path.toObject();
+    socket.emit("canvas-data", pathData);
     };
 
     canvas.on("path:created", handleCanvasChange);
@@ -97,7 +106,8 @@ const Canvas = ({socket, theme}) => {
 
     socket.on("canvas-data", (data) => {
       const path = new fabric.Path(data.path);
-      path.set(data);
+      path.set({ ...data });
+      path.id = data.id; 
       canvas.add(path);
       canvas.renderAll();
     });
@@ -109,7 +119,6 @@ const Canvas = ({socket, theme}) => {
 
     socket.on("add-circle", (data) => {
       const circle = new fabric.Circle(data);
-      console.log(circle);
       canvas.add(circle);
     });
     socket.on("add-triangle", (data) => {
@@ -117,11 +126,13 @@ const Canvas = ({socket, theme}) => {
       canvas.add(triangle);
     });
     socket.on("undo", (data) => {
-      console.log(data);
-      console.log(canvas.getObjects());
       const object = canvas
         .getObjects()
         .find((obj) => obj.id === data.objectId);
+        console.log(canvas
+          .getObjects())
+          console.log(data.objectId)
+  
       if (object) {
         canvas.remove(object);
         canvas.renderAll();
@@ -130,7 +141,6 @@ const Canvas = ({socket, theme}) => {
 
     socket.on("add-text", (data) => {
       const text = new fabric.IText("", data);
-      console.log(text);
       canvas.add(text);
     });
     socket.on("text-updated", (data) => {
@@ -162,10 +172,33 @@ const Canvas = ({socket, theme}) => {
         obj.lastScaleX = obj.scaleX;
         obj.lastScaleY = obj.scaleY;
       }
+      const scalingData = {
+        id: obj.id,
+        scaleX: obj.scaleX,
+        scaleY: obj.scaleY,
+        left: obj.left,
+        top: obj.top,
+      };
+      socket.emit("object-scaling", scalingData);
     });
+
+    socket.on("object-scaling", (data) => {
+      const object = canvas.getObjects().find((obj) => obj.id === data.id);
+      if (object) {
+        object.set({
+          scaleX: data.scaleX,
+          scaleY: data.scaleY,
+          left: data.left,
+          top: data.top,
+        });
+        canvas.renderAll();
+      }
+    });
+    
     const handleWindowResize = () => {
       const { width } = container.getBoundingClientRect();
       canvas.setDimensions({ width });
+      socket.emit("canvas-resize", { width });
     };
 
     window.addEventListener("resize", handleWindowResize);
@@ -174,12 +207,18 @@ const Canvas = ({socket, theme}) => {
       canvas = null;
     };
   }, []);
+  socket.on("canvas-resize", (data) => {
+    canvas.setDimensions({ width: data.width });
+  });
 
   const handleUndo = () => {
     const objects = canvas.getObjects();
     if (objects.length > 0) {
       const lastObject = objects[objects.length - 1];
+      console.log('Last object:', lastObject); 
       canvas.remove(lastObject);
+      const undoData = { userId: socket.id, objectId: lastObject.id };
+      console.log('Sending undo data:', undoData);
       socket.emit("undo", { userId: socket.id, objectId: lastObject.id });
     }
   };
