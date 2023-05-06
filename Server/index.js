@@ -57,6 +57,12 @@ io.on("connection", (socket) => {
   socket.on("object-moving", (data) => {
     socket.broadcast.emit("object-moving", data);
   });
+  socket.on("object-scaling", (data) => {
+    socket.broadcast.emit("object-scaling", data);
+  });
+  socket.on("canvas-resize", (data) => {
+    socket.broadcast.emit("canvas-resize", data);
+  });
 });
 
 server.listen(3000, () => {
