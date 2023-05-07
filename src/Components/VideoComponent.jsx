@@ -34,6 +34,10 @@ export default function Room({props}){
         socket.on('user-connected', userId => {
             connectToNewUser(userId, stream)
         })
+
+        const videoTrack = stream.getVideoTracks()[0];
+        const constraints = { width: { exact: 269 }, height: { exact: 150 } };
+        videoTrack.applyConstraints(constraints);
         })
 
         socket.on('user-disconnected', userId => {

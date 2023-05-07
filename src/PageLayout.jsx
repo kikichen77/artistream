@@ -3,7 +3,7 @@ import React from "react"
 
 export default function PageLayout(){
     return(<React.Fragment>
-        <header>
+        {/* <header>
         TobyZoom
         
         <NavLink
@@ -11,14 +11,10 @@ export default function PageLayout(){
         className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
         }>Connect</NavLink>
-        </header>
+        </header> */}
 
         <div className = "container">
             <Outlet/>
         </div>
-        
-        <footer>
-            Footer
-        </footer>
         </React.Fragment>)
 }

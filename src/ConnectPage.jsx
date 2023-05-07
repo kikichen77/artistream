@@ -10,7 +10,7 @@ import { Form,
          ButtonDark, 
          WrapperCol, 
          WrapperRow 
-        } from "../Components/MarkupComponent";
+        } from "./Components/MarkupComponent";
 import logoImage from './assets/HilariousHuskies.png';
 
 

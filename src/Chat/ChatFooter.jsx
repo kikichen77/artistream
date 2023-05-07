@@ -1,6 +1,8 @@
 import styles from "./ChatBoxStyles.module.css"
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import { IconButton } from "@mui/material";
+import EmoticonPalette from "../EmoticonPalette";
 
 export default function ChatFooter({socket}) {
   const [message, setMessage] = useState('');
@@ -30,6 +32,9 @@ export default function ChatFooter({socket}) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
+        <IconButton sx={{ color: "grey" }}>
+					<EmoticonPalette />
+				</IconButton>
         <button className={styles.chatboxBtn}>Send</button>
       </form>
     </div>
