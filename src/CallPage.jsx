@@ -7,7 +7,7 @@ import Canvas from "./Canvas/Canvas";
 import { Grid } from "@mui/material";
 import Header from "./Header";
 import ConnectedUsers from "./ConnectedUsers";
-import MeetingControls from "./MeetingControls";
+//import MeetingControls from "./MeetingControls";
 
 
 export default function CallPage({theme}) {
@@ -42,7 +42,7 @@ export default function CallPage({theme}) {
 				</Grid>
 				<Grid item xs={6} sm={8} md={9} lg={9} xl={10} sx={{ height: "95vh" }}>
 					<Canvas socket={socket} theme={theme}/>
-					<MeetingControls />
+					{/* <MeetingControls /> */}
 				</Grid>
 			</Grid>
     </React.Fragment>

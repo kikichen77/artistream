@@ -3,7 +3,6 @@ import React, { useRef, useEffect, useLayoutEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { IconButton } from "@mui/material";
 import { fabric } from "fabric";
-import BackHandIcon from "@mui/icons-material/BackHand";
 import { v4 as uuidv4 } from "uuid";
 
 const Canvas = ({socket, theme}) => {
@@ -439,9 +438,19 @@ const Canvas = ({socket, theme}) => {
           >
             Draw
           </button>
-          <IconButton sx={{ color: "white" }} onClick={handleSelector}>
-            <BackHandIcon />
-          </IconButton>
+          <button 
+            onClick={handleSelector}
+            style={{
+              borderRadius: "20px",
+              backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
+              height: "35px",
+              color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
+              margin: "2px",
+              border: "none",
+            }}
+          >
+            Selector
+          </button>
           <input
             type="range"
             min="1"

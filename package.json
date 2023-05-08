@@ -9,9 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.8",
-    "@emotion/styled": "^11.10.8",
-    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
     "cors": "^2.8.5",
     "emoji-picker-react": "^4.4.9",
