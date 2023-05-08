@@ -2,10 +2,10 @@ import Peer from 'peerjs';
 import React, { useEffect } from 'react';
 import SocketIO from 'socket.io-client';
 
-export default function Room({props}){
+export default function Room({props,socket}){
     let ROOM_ID=props
     console.log("Component - Room ID:"+ROOM_ID)
-    let socket = SocketIO("http://localhost:3000")
+    //let socket = SocketIO("http://localhost:3000")
     useEffect(() => {
         const videoGrid = document.getElementById('video-grid')
         
@@ -32,7 +32,9 @@ export default function Room({props}){
         })
 
         socket.on('user-connected', userId => {
+            setTimeout(() => {
             connectToNewUser(userId, stream)
+            },800)
         })
 
         const videoTrack = stream.getVideoTracks()[0];

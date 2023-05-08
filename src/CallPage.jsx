@@ -37,7 +37,7 @@ export default function CallPage({theme}) {
           
 				</Grid>
 				<Grid item xs={6} sm={4} md={3} lg={3} xl={2} sx={{ height: "95vh" }}>
-					<ConnectedUsers ROOM_ID={ROOM_ID}/> 
+					<ConnectedUsers ROOM_ID={ROOM_ID} socket={socket}/> 
 					<ChatBox socket={socket} theme={theme}/>
 				</Grid>
 				<Grid item xs={6} sm={8} md={9} lg={9} xl={10} sx={{ height: "95vh" }}>
