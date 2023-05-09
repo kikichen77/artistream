@@ -5,7 +5,31 @@ import SocketIO from "socket.io-client";
 export default function Room({ props, socket }) {
 	let ROOM_ID = props;
 	console.log("Component - Room ID:" + ROOM_ID);
-	//let socket = SocketIO("http://localhost:3000")
+	let vidOn = true;
+    let micOn = true;
+    let selfMediaStream;
+
+    const toggleMic = () => {
+        if (micOn){
+            selfMediaStream.getAudioTracks()[0].enabled = false;
+            micOn = false;
+        }
+        else{
+            selfMediaStream.getAudioTracks()[0].enabled = true;
+            micOn = true;
+        }
+    }
+    const toggleCam = () => {
+        if (vidOn){
+            selfMediaStream.getVideoTracks()[0].enabled = false;
+            vidOn = false;
+        }
+        else{
+            selfMediaStream.getVideoTracks()[0].enabled = true;
+            vidOn = true;
+        }
+    }
+
 	useEffect(() => {
 		const videoGrid = document.getElementById("video-grid");
 
@@ -24,7 +48,7 @@ export default function Room({ props, socket }) {
 			})
 			.then((stream) => {
 				addVideoStream(myVideo, stream);
-
+				selfMediaStream = stream;
 				myPeer.on("call", (call) => {
 					call.answer(stream);
 					const video = document.createElement("video");
@@ -73,5 +97,11 @@ export default function Room({ props, socket }) {
 			videoGrid.append(video);
 		}
 	});
-	return <div id="video-grid" style={{ marginLeft: "20px" }}></div>;
+	return (
+		<React.Fragment>
+		<button onClick={toggleMic}>Toggle Mic</button>;
+		<button onClick={toggleCam}>Toggle Cam</button>;
+		<div id="video-grid" style={{ marginLeft: "20px" }}></div>
+		</React.Fragment>
+	);
 }

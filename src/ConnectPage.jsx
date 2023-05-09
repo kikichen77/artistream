@@ -34,8 +34,8 @@ export default function ConnectPage({theme}) {
 
     const submitRoom = (e) => {
       e.preventDefault();
-      if (roomId.current.value == "connect"){
-        alert("Cannot use that name")
+      if (roomId.current.value == "connect" || roomId.current.value == ""){
+        alert("Cannot use that room name")
       }
       else{
         sessionStorage.setItem('username', userName.current.value);
