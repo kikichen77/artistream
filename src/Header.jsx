@@ -1,11 +1,8 @@
 import styles from "./WhiteboardStyles/HeaderStyles.module.css"
-import CopyID from "./Components/CopyComponent"
 
-
-export default function Header({ROOM_ID}) {
+export default function Header() {
     return (
-        <header>
-            <CopyID props={ROOM_ID}/>
+        <header className={styles.header}>
             <h1 className={styles.headerText}>Artistream</h1>
         </header>
     )

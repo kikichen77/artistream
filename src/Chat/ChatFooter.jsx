@@ -19,7 +19,7 @@ export default function ChatFooter({socket}) {
 
   return (
     <div className={styles.chatboxFooter}>
-      <form className={styles.chatboxForm} onSubmit={handleSendMessage} autocomplete="off">
+      <form className={styles.chatboxForm} onSubmit={handleSendMessage} autoComplete="off">
         <input 
           id="textfield" 
           name="textfield" 

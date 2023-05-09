@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { fabric } from "fabric";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./ToolsStyles.module.css"
 
 const Canvas = ({ socket, theme }) => {
 	const canvasRef = useRef(null);
@@ -407,98 +408,44 @@ const Canvas = ({ socket, theme }) => {
 						height={600}
 						style={{
 							width: "100%",
-
 							borderRadius: "20px",
 						}}
 					/>
 				</div>
-				<div
-					style={{
-						backgroundColor: `${
-							theme ? "rgb(132, 132, 143)" : "rgb(37, 42, 69)"
-						}`,
-						margin: "20px",
-						display: "flex",
-						justifyContent: "center",
-						border: "none",
-					}}
-				>
+				<div className={styles.toolArea}>
 					<button
 						onClick={handleAddRectangle}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: ".5vh",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Add Rectangle
 					</button>
 					<button
 						onClick={handleAddCircle}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							width: "120px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Add Circle
 					</button>
 					<button
 						onClick={handleAddTriangle}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Add Triangle
 					</button>
 					<button
 						onClick={handleUndo}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Undo
 					</button>
 					<button
 						onClick={handleDraw}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Draw
 					</button>
 					<button
 						onClick={handleSelector}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Selector
 					</button>
@@ -514,68 +461,31 @@ const Canvas = ({ socket, theme }) => {
 						type="color"
 						defaultValue="#000000"
 						onChange={handleBrushColorChange}
-						style={{
-							borderRadius: "10px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							width: "30px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: `.5px solid ${
-								theme ? "rgb(37, 42, 69)" : "rgb(37, 42, 69)"
-							}`,
-						}}
+						className={styles.brushColourChange}
 					/>
 
 					<button
 						onClick={handleClear}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Clear
 					</button>
 					<button
 						onClick={handleAddText}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Add Text
 					</button>
 
 					<button
 						onClick={handleSaveImage}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Save Image
 					</button>
 					<button
 						onClick={handleExportAsPDF}
-						style={{
-							borderRadius: "20px",
-							backgroundColor: theme ? "rgb(44, 45, 53)" : "rgb(225, 225, 225)",
-							height: "35px",
-							color: theme ? "rgb(225, 225, 225)" : "rgb(37, 42, 69)",
-							margin: "2px",
-							border: "none",
-						}}
+						className={styles.toolButton}
 					>
 						Export as PDF
 					</button>
