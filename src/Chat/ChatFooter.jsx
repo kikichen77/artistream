@@ -1,6 +1,5 @@
 import styles from "./ChatBoxStyles.module.css"
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
 
 export default function ChatFooter({socket}) {
   const [message, setMessage] = useState('');
@@ -20,13 +19,13 @@ export default function ChatFooter({socket}) {
 
   return (
     <div className={styles.chatboxFooter}>
-      <form className={styles.chatboxForm} onSubmit={handleSendMessage}>
-        <TextField 
-          className={styles.textField} 
-          label="Message the room" 
-          variant="filled" 
-          size="small"
-          type="text"
+      <form className={styles.chatboxForm} onSubmit={handleSendMessage} autoComplete="off">
+        <input 
+          id="textfield" 
+          name="textfield" 
+          type="text" 
+          placeholder="Message the room..."
+          className={styles.chatboxForm}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

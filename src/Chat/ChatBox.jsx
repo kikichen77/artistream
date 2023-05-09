@@ -24,6 +24,9 @@ export default function ChatBox({socket, theme}) {
 
     return (
         <div className={`${theme ? styles.darkChatboxBox : styles.chatboxBox}`}>
+            <header className={styles.chatboxHeader}>
+                <p>Room Chat</p>
+            </header>
             <div className={styles.chatDisplay}>
                 <ChatBody 
                     messages={messages} 
