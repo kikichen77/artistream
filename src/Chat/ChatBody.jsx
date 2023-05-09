@@ -13,10 +13,6 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
     
     return (
         <>
-            <header className={styles.chatboxHeader}>
-                <p>Room Chat</p>
-            </header>
-
             <div className={styles.chatboxDisplay}>
                 {messages.map((message) =>
                 message.name === sessionStorage.getItem('username') ? (
