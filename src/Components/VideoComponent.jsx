@@ -1,75 +1,77 @@
-import Peer from 'peerjs';
-import React, { useEffect } from 'react';
-import SocketIO from 'socket.io-client';
+import Peer from "peerjs";
+import React, { useEffect } from "react";
+import SocketIO from "socket.io-client";
 
-export default function Room({props,socket}){
-    let ROOM_ID=props
-    console.log("Component - Room ID:"+ROOM_ID)
-    //let socket = SocketIO("http://localhost:3000")
-    useEffect(() => {
-        const videoGrid = document.getElementById('video-grid')
-        
-        const myPeer = new Peer(undefined, {
-        host: '/',
-        port: '3001'
-        })
+export default function Room({ props, socket }) {
+	let ROOM_ID = props;
+	console.log("Component - Room ID:" + ROOM_ID);
+	//let socket = SocketIO("http://localhost:3000")
+	useEffect(() => {
+		const videoGrid = document.getElementById("video-grid");
 
-        const myVideo = document.createElement('video')
-        myVideo.muted = true
-        const peers = {}
-        navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
-        }).then(stream => {
-        addVideoStream(myVideo, stream)
+		const myPeer = new Peer(undefined, {
+			host: "/",
+			port: "3001",
+		});
 
-        myPeer.on('call', call => {
-            call.answer(stream)
-            const video = document.createElement('video')
-            call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream)
-            })
-        })
+		const myVideo = document.createElement("video");
+		myVideo.muted = true;
+		const peers = {};
+		navigator.mediaDevices
+			.getUserMedia({
+				video: true,
+				audio: true,
+			})
+			.then((stream) => {
+				addVideoStream(myVideo, stream);
 
-        socket.on('user-connected', userId => {
-            setTimeout(() => {
-            connectToNewUser(userId, stream)
-            },800)
-        })
+				myPeer.on("call", (call) => {
+					call.answer(stream);
+					const video = document.createElement("video");
+					call.on("stream", (userVideoStream) => {
+						addVideoStream(video, userVideoStream);
+					});
+				});
 
-        const videoTrack = stream.getVideoTracks()[0];
-        const constraints = { width: { exact: 269 }, height: { exact: 150 } };
-        videoTrack.applyConstraints(constraints);
-        })
+				socket.on("user-connected", (userId) => {
+					setTimeout(() => {
+						connectToNewUser(userId, stream);
+					}, 800);
+				});
 
-        socket.on('user-disconnected', userId => {
-            if (peers[userId]) peers[userId].close()
-        })
+				const videoTrack = stream.getVideoTracks()[0];
+				const constraints = { width: { exact: 269 }, height: { exact: 150 } };
+				videoTrack.applyConstraints(constraints);
+			});
 
-        myPeer.on('open', id => {
-            socket.emit('join-room', ROOM_ID, id)
-        })
+		socket.on("user-disconnected", (userId) => {
+			if (peers[userId]) peers[userId].close();
+		});
 
-        function connectToNewUser(userId, stream) {
-            const call = myPeer.call(userId, stream)
-            const video = document.createElement('video')
-            call.on('stream', userVideoStream => {
-                addVideoStream(video, userVideoStream)
-            })
-            call.on('close', () => {
-                video.remove()
-            })
-            peers[userId] = call
-        }
+		myPeer.on("open", (id) => {
+			socket.emit("join-room", ROOM_ID, id);
+		});
 
-        function addVideoStream(video, stream) {
-            video.srcObject = stream
-            video.addEventListener('loadedmetadata', () => {
-                video.play()
-            })
-            videoGrid.append(video)
-        }
-    }
-)
-return (<div id="video-grid"></div>);
-};
+		function connectToNewUser(userId, stream) {
+			const call = myPeer.call(userId, stream);
+			const video = document.createElement("video");
+			call.on("stream", (userVideoStream) => {
+				addVideoStream(video, userVideoStream);
+			});
+			call.on("close", () => {
+				video.remove();
+			});
+			peers[userId] = call;
+		}
+
+		function addVideoStream(video, stream) {
+			video.srcObject = stream;
+			video.addEventListener("loadedmetadata", () => {
+				video.play();
+			});
+			video.style.width = "95%";
+			videoGrid.append(video);
+		}
+	});
+	return <div id="video-grid" style={{ marginLeft: "20px" }}></div>;
+}

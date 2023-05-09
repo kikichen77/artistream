@@ -404,7 +404,7 @@ const Canvas = ({ socket, theme }) => {
 				>
 					<canvas
 						ref={canvasRef}
-						height={600}
+						height={700}
 						style={{
 							width: "100%",
 
