@@ -1,6 +1,6 @@
 /* Chat Body */
 .chatboxBox {
-    background-color: rgb(37, 42, 69);
+    background-color: #2F354A;
     margin-top: 20px;
 	margin-left: 20px;
 	padding: 10px;
@@ -26,11 +26,11 @@
 }
 
 .chatDisplay {
-    background-color: white;
+    background-color: whitesmoke;
     border-radius: 10px;
     margin-top: 0px;
     margin-bottom: 10px;
-    height: 70%;
+    height: 65%;
     left: 20px;
     top: 20px;
     color: black;

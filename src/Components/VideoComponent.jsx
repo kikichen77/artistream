@@ -1,6 +1,7 @@
 import Peer from "peerjs";
 import React, { useEffect } from "react";
 import SocketIO from "socket.io-client";
+import styles from "./MiscComponentStyles.module.css"
 
 export default function Room({ props, socket }) {
 	let ROOM_ID = props;
@@ -99,9 +100,12 @@ export default function Room({ props, socket }) {
 	});
 	return (
 		<React.Fragment>
-		<button onClick={toggleMic}>Toggle Mic</button>;
-		<button onClick={toggleCam}>Toggle Cam</button>;
-		<div id="video-grid" style={{ marginLeft: "20px" }}></div>
+			<div className={styles.center}>
+				<button className={styles.toggleButton} onClick={toggleMic}>Toggle Mic</button>;
+				<button className={styles.toggleButton} onClick={toggleCam}>Toggle Cam</button>;
+			</div>
+		
+			<div id="video-grid" style={{ marginLeft: "20px" }}></div>
 		</React.Fragment>
 	);
 }

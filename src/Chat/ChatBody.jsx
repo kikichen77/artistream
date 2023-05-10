@@ -1,16 +1,7 @@
 import styles from "./ChatBoxStyles.module.css"
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function ChatBody({messages, lastMessageRef, typingStatus}) {
-    const navigate = useNavigate();
-
-    const handleLeaveChat = () => {
-        sessionStorage.removeItem('username');
-        navigate('/');
-        window.location.reload();
-    };
-    
     return (
         <>
             <div className={styles.chatboxDisplay}>

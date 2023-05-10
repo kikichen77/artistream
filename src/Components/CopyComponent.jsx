@@ -18,7 +18,7 @@ export default function CopyID({props}){
                 <button>Copy room ID</button>
             </CopyToClipboard>
 
-            {copied ? <span>Copied</span> : null}
+            {copied ? <span className={styles.copied}>Copied {'\u2714'}</span> : null}
         </div>
     );
 };

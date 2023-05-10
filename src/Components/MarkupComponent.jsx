@@ -28,6 +28,9 @@ export const LogoImage = styled.img`
   background-position: center;
   border-radius: 50%;
   margin-bottom: 20px
+
+  margin: auto;
+  padding: 10px;
 `;
 
 export const Input = styled.input`
@@ -79,28 +82,16 @@ export const InputDark = styled.input`
 `;
 
 export const Button = styled.input`
-  background-color: rgb(44, 202, 247);
-  color: black;
-  width: 100px;
+  background-color: #5D627A;
+  color: white;
+  box-shadow: 2px 5px #040A20;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgb(43, 192, 105);
+    cursor: pointer;
+  }
   padding: 8px 16px;
   margin: 5px;
-  border: 1px solid rgb(44, 202, 247);
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
-  &:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-     -ms-transition: all .3s ease;
-      -o-transition: all .3s ease;
-         transition: all .3s ease;
-  }
 `;
 
 export const ButtonDark = styled.input`

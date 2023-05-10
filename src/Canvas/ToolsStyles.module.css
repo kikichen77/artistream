@@ -1,10 +1,13 @@
 .toolButton {
-    border-radius: 20px;
-    background-color: rgb(44, 45, 53) rgb(225, 225, 225);
+    border-radius: 10px;
     height: 35px;
-    color: rgb(225, 225, 225) rgb(37, 42, 69);
     margin: 2px;
     border: none;
+}
+
+.toolButton:hover {
+    background-color: rgb(43, 192, 105);
+    cursor: pointer;
 }
 
 .toolArea {
@@ -15,11 +18,10 @@
 }
 
 .brushColourChange {
-    border-radius: 10px;
-    background-color: rgb(44, 45, 53);
+    border-radius: 3px;
+    background-color: #8E93AC;
     width: 50px;
     height: 35px;
-    color: rgb(225, 225, 225);
     margin: 2px;
-    border: 5px solid rgb(37, 42, 69);
+    
 }

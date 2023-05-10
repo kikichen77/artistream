@@ -12,6 +12,7 @@ import { Form,
          WrapperRow 
         } from "./Components/MarkupComponent";
 import logoImage from './assets/HilariousHuskies.png';
+import styles from "./LandingPageComponents/LandingPageStyles.module.css"
 
 
 export default function ConnectPage({theme}) {
@@ -45,47 +46,51 @@ export default function ConnectPage({theme}) {
   
     return (
     <WrapperCol>
-      <LogoImage src={logoImage}/>
-      {/* <h1>Username</h1> */}
-      <Form onSubmit={submitRoom}>
-        <WrapperCol>
-          {theme ?
-          <>
-            <label>
-              <InputDark type="text" ref={userName} placeholder="Enter username" />
-            </label>
-            <br />
-            <label>
-              <InputDark type="text" ref={roomId} placeholder="Enter room ID" />
-            </label>
-          </>
-          :
-          <>
-            <label>
-              <Input type="text" ref={userName} placeholder="Enter username" />
-            </label>
-            <br />
-            <label>
-              <Input type="text" ref={roomId} placeholder="Enter room ID" />
-            </label>
-          </>
-          }
-          </WrapperCol>
-          <br />
-          <WrapperRow>
-            {theme ? 
+      <div className={styles.lpBackground}>
+        <div className={styles.logoSpace}>
+          <LogoImage src={logoImage}/>
+        </div>
+        {/* <h1>Username</h1> */}
+        <Form onSubmit={submitRoom}>
+          <WrapperCol>
+            {theme ?
             <>
-              <ButtonDark type="submit" value="Join Room" />
-              <ButtonDark type="button" onClick={makeRoom} value = "Make Room"/>
+              <label>
+                <InputDark type="text" ref={userName} placeholder="Enter username" />
+              </label>
+              <br />
+              <label>
+                <InputDark type="text" ref={roomId} placeholder="Enter room ID" />
+              </label>
             </>
             :
             <>
-              <Button type="submit" value="Join Room" />
-              <Button type="button" onClick={makeRoom} value = "Make Room"/>
+              <label>
+                <Input type="text" ref={userName} placeholder="Enter username" />
+              </label>
+              <br />
+              <label>
+                <Input type="text" ref={roomId} placeholder="Enter room ID" />
+              </label>
             </>
             }
-          </WrapperRow>
-      </Form>
-    </WrapperCol>
+            </WrapperCol>
+            <br />
+            <WrapperRow>
+              {theme ? 
+              <>
+                <ButtonDark type="submit" value="Join Room" />
+                <ButtonDark type="button" onClick={makeRoom} value = "Make Room"/>
+              </>
+              :
+              <>
+                <Button type="submit" value="Join Room" />
+                <Button type="button" onClick={makeRoom} value = "Make Room"/>
+              </>
+              }
+            </WrapperRow>
+          </Form>
+      </div>
+      </WrapperCol>
     )
 }

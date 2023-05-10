@@ -1,13 +1,18 @@
 .header {
-    background-color: rgb(37, 42, 69);
+    background-color: #2F354A;
+    /* background-color: #161D34; */
     border-radius: 20px;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -20px;
+    margin-bottom: -30px;
 }
 
 .headerText {
     text-align: center;
     color: white;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    letter-spacing: 5px;
     font-size: 50px;
     padding: 10px;
 }

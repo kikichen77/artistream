@@ -1,0 +1,14 @@
+.lpBackground {
+    background-color: #2F354A;
+    margin: 15vh;
+    padding: 15vh;
+    padding-left: 20vh;
+    padding-right: 20vh;
+    border-radius: 20px;
+}
+
+.logoSpace {
+    margin: auto;
+    padding: 10px;
+    margin-bottom: 40px;
+}

@@ -379,7 +379,7 @@ const Canvas = ({ socket, theme }) => {
 	return (
 		<Box
 			sx={{
-				backgroundColor: `${theme ? "rgb(132, 132, 143)" : "rgb(37, 42, 69)"}`,
+				backgroundColor: `${theme ? "#2F354A" : "#2F354A"}`,
 				borderRadius: "20px",
 				display: "flex",
 				justifyContent: "center",
@@ -400,7 +400,7 @@ const Canvas = ({ socket, theme }) => {
 					style={{
 						borderRadius: "20px",
 						marginTop: "10px",
-						backgroundColor: "#ffffff",
+						backgroundColor: "whitesmoke",
 					}}
 				>
 					<canvas
