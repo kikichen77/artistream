@@ -5,7 +5,7 @@
 	margin-left: 20px;
 	padding: 10px;
 	border-radius: 20px;
-	height: 23vh;
+	height: 35%;
 }
 
 .darkChatboxBox{
@@ -47,7 +47,8 @@
 
 .chatboxHeader {
     text-align: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     color: rgb(255, 255, 255);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 15px;
