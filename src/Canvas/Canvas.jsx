@@ -392,14 +392,14 @@ const Canvas = ({ socket, theme }) => {
 					position: "relative",
 					justifyContent: "center",
 					alignItems: "center",
-					width: "90%",
+					width: "95%",
 				}}
 			>
 				<div
 					ref={containerRef}
 					style={{
 						borderRadius: "20px",
-						marginTop: "10px",
+						marginTop: "20px",
 						backgroundColor: "whitesmoke",
 					}}
 				>
@@ -447,7 +447,7 @@ const Canvas = ({ socket, theme }) => {
 						onClick={handleSelector}
 						className={styles.toolButton}
 					>
-						Selector
+						Selection
 					</button>
 					
 					<input
