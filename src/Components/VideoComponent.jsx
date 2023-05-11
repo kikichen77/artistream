@@ -8,6 +8,30 @@ export default function Room({ props, socket }) {
 	//const  mediaStreamNameMap =useRef( new Map());
 	console.log("Component - Room ID:" + ROOM_ID);
 	//let socket = SocketIO("http://localhost:3000")
+	let vidOn = true;
+    let micOn = true;
+    let selfMediaStream;
+
+    const toggleMic = () => {
+        if (micOn){
+            selfMediaStream.getAudioTracks()[0].enabled = false;
+            micOn = false;
+        }
+        else{
+            selfMediaStream.getAudioTracks()[0].enabled = true;
+            micOn = true;
+        }
+    }
+    const toggleCam = () => {
+        if (vidOn){
+            selfMediaStream.getVideoTracks()[0].enabled = false;
+            vidOn = false;
+        }
+        else{
+            selfMediaStream.getVideoTracks()[0].enabled = true;
+            vidOn = true;
+        }
+    }
 	useEffect(() => {
 		
 		const videoGrid = document.getElementById("video-grid");
@@ -94,8 +118,8 @@ export default function Room({ props, socket }) {
 	return (
 		<React.Fragment>
 			<div className={styles.center}>
-				<button className={styles.toggleButton} onClick={toggleMic}>Toggle Mic</button>;
-				<button className={styles.toggleButton} onClick={toggleCam}>Toggle Cam</button>;
+				<button className={styles.toggleButton} onClick={toggleMic}>Toggle Mic</button>
+				<button className={styles.toggleButton} onClick={toggleCam}>Toggle Cam</button>
 			</div>
 		
 			<div id="video-grid" style={{ marginLeft: "20px" }}></div>
