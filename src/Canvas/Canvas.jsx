@@ -46,6 +46,8 @@ const Canvas = ({ socket, theme }) => {
 		canvas = new fabric.Canvas(canvasRef.current, {
 			width,
 		});
+		
+canvas.selection = false;
 
 		canvas.freeDrawingBrush.width = 5;
 		//init canvas data
@@ -64,37 +66,43 @@ const Canvas = ({ socket, theme }) => {
 			1000
 		);
 
-		canvas.on("object:added", () => {
+		canvas.on("object:added", (e) => {
 			console.log("Object added");
 		});
-		canvas.on("object:moving", function (e) {
-			const obj = e.target;
 
-			// keep object inside canvas bounds
-			if (
-				obj.getBoundingRect().top < 0 ||
-				obj.getBoundingRect().left < 0 ||
-				obj.getBoundingRect().top + obj.getBoundingRect().height >
-					canvas.getHeight() ||
-				obj.getBoundingRect().left + obj.getBoundingRect().width >
-					canvas.getWidth()
-			) {
-				obj.top = Math.min(
-					Math.max(obj.top, obj.height / 2),
-					canvas.getHeight() - obj.height / 2
-				);
-				obj.left = Math.min(
-					Math.max(obj.left, obj.width / 2),
-					canvas.getWidth() - obj.width / 2
-				);
-			}
-			const movingData = {
-				id: obj.id,
-				top: obj.top,
-				left: obj.left,
-			};
-			socket.emit("object-moving", movingData);
+		canvas.on("object:moving", function (e) {
+			const obj= e.target	
+				if (
+					obj.getBoundingRect().top < 0 ||
+					obj.getBoundingRect().left < 0 ||
+					obj.getBoundingRect().top + obj.getBoundingRect().height >
+						canvas.getHeight() ||
+					obj.getBoundingRect().left + obj.getBoundingRect().width >
+						canvas.getWidth()
+				) {
+					obj.top = Math.min(
+						Math.max(obj.top, obj.height / 2),
+						canvas.getHeight() - obj.height / 2
+					);
+					obj.left = Math.min(
+						Math.max(obj.left, obj.width / 2),
+						canvas.getWidth() - obj.width / 2
+					);
+				}
+				
+				const movingData = {
+					id: obj.id,
+					top: obj.top,
+					left: obj.left,
+				};
+				console.log(movingData)
+				socket.emit("object-moving", movingData);
+			
+			
+		
 		});
+		
+		
 		canvas.on("object:rotating", function (e) {
 			const obj = e.target;
 			const rotatingData = {
@@ -108,6 +116,7 @@ const Canvas = ({ socket, theme }) => {
 			};
 			socket.emit("object-rotating", rotatingData);
 		});
+
 		socket.on("object-rotating", (data) => {
 			const object = canvas.getObjects().find((obj) => obj.id === data.id);
 			if (object) {
@@ -124,6 +133,7 @@ const Canvas = ({ socket, theme }) => {
 		});
 
 		socket.on("object-moving", (data) => {
+			console.log(data)
 			const object = canvas.getObjects().find((obj) => obj.id === data.id);
 			if (object) {
 				object.set({
@@ -133,7 +143,8 @@ const Canvas = ({ socket, theme }) => {
 				canvas.renderAll();
 			}
 		});
-
+	
+	
 		const handleCanvasChange = (e) => {
 			const path = e.path || e.target;
 			path.id = uuidv4();
@@ -198,7 +209,6 @@ const Canvas = ({ socket, theme }) => {
 
 		canvas.on("object:scaling", function (e) {
 			const obj = e.target;
-			console.log(obj);
 			// keep object inside canvas bounds
 			if (
 				obj.getBoundingRect().top < 0 ||
@@ -228,7 +238,6 @@ const Canvas = ({ socket, theme }) => {
 		});
 
 		socket.on("object-scaling", (data) => {
-			console.log(data);
 			const object = canvas.getObjects().find((obj) => obj.id === data.id);
 			if (object) {
 				object.set({

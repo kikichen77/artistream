@@ -6,6 +6,7 @@ export default function ChatFooter({socket}) {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+    console.log(socket.id)
     if (message.trim() && sessionStorage.getItem('username')) {
         socket.emit('message', {
             text: message,
