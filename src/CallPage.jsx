@@ -8,6 +8,7 @@ import { Grid } from "@mui/material";
 import Header from "./Header";
 import ConnectedUsers from "./ConnectedUsers";
 //import MeetingControls from "./MeetingControls";
+import CopyID from "./Components/CopyComponent"
 
 export default function CallPage({ theme }) {
 	const { state } = useLocation();
@@ -24,9 +25,10 @@ export default function CallPage({ theme }) {
 		<React.Fragment>
 			<Grid container rowSpacing={2} spacing={6}>
 				<Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-					<Header ROOM_ID={ROOM_ID} />
+					<Header/>
 				</Grid>
 				<Grid item xs={6} sm={4} md={3} lg={3} xl={2}>
+					<CopyID props={ROOM_ID}/>
 					<ConnectedUsers ROOM_ID={ROOM_ID} socket={socket} />
 					<ChatBox socket={socket} theme={theme} />
 				</Grid>

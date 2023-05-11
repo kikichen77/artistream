@@ -27,13 +27,13 @@ function App() {
   return (
     <React.Fragment>
       {/* <button onClick={handleClick}>{theme ? "Light" : "Dark"}</button> */}
-      <DarkModeSwitch
+      {/* <DarkModeSwitch
         style={{ width: "20px", position: "absolute", top: "0", right: "20px" }}
         checked={theme}
         onChange={handleClick}
         onClick={handleClick}
         size={120}
-      />
+      /> */}
       <Routes>
         <Route path="/" element={<PageLayout />}>
           <Route index element={<Navigate to="connect" replace={true} />}></Route>

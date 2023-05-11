@@ -5,7 +5,7 @@
 	margin-left: 20px;
 	padding: 10px;
 	border-radius: 20px;
-	height: 30%;
+	height: 23vh;
 }
 
 .darkChatboxBox{
@@ -35,7 +35,6 @@
     top: 20px;
     color: black;
     font-family: Arial;
-    overflow-y: scroll;
     /* Hide the scroll bar but keep the scroll function*/
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
@@ -49,15 +48,16 @@
 .chatboxHeader {
     text-align: center;
     margin: auto;
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 15px;
     width: max-content;
+    font-weight: bold;
 }
 
 .chatboxRight {
     background-color: lightgreen;
-    width: 30%;
+    width: 50%;
     max-width: 300px;
     padding: 10px;
     border-radius: 10px;
@@ -68,7 +68,7 @@
 
 .chatboxLeft {
     background-color: lightgoldenrodyellow;
-    width: 30%;
+    width: 50%;
     max-width: 300px;
     padding: 10px;
     border-radius: 10px;
@@ -93,17 +93,10 @@
     margin: 1px;
 }
 
-.messageStatus {
-    margin-left: 10px;
-    font-family: Arial;
-    font-size: 12px;
-    font-style: italic;
-}
-
 .chatboxFooter {
     background-color: white;
     border-radius: 10px;
-    width: 90%;
+    width: 100%;
     left: 20px;
     bottom: 20px;
 }
@@ -114,15 +107,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: none;
+    font-size: large;
+}
+
+.chatboxForm input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+.chatboxForm ::placeholder {
+    opacity: 50%;
+    padding-left: 10px;
 }
 
 .chatboxBtn {
     width: 150px;
     background-color: green;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: none;
     outline: none;
     cursor: pointer;
+    font-size: large;
+    color: white;
+    border-radius: 8px;
 }
 
 /* Chat Footer */

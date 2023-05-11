@@ -47,6 +47,7 @@ export default function ConnectPage({theme}) {
         }else if(roomFull){
           alert("The room is full, please wait")
         }else{
+
         sessionStorage.setItem('username', userName.current.value);
         navigate("/room", { state: { ROOM_ID: roomId.current.value } })
       }

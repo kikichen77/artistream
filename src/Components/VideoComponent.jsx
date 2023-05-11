@@ -6,8 +6,7 @@ export default function Room({ props, socket }) {
 	let ROOM_ID = props;
 	//const  mediaStreamNameMap =useRef( new Map());
 	console.log("Component - Room ID:" + ROOM_ID);
-
-
+	//let socket = SocketIO("http://localhost:3000")
 	useEffect(() => {
 		
 		const videoGrid = document.getElementById("video-grid");
@@ -27,7 +26,8 @@ export default function Room({ props, socket }) {
 				audio: true,
 			})
 			.then((stream) => {
-				addVideoStream(myVideo, stream)
+				addVideoStream(myVideo, stream);
+
 				myPeer.on("call", (call) => {
 					call.answer(stream);
 					const video = document.createElement("video");
@@ -90,5 +90,11 @@ export default function Room({ props, socket }) {
 		
 		
 	});
-	return <div id="video-grid" style={{ marginLeft: "20px" }}></div>;
+	return (
+		<React.Fragment>
+		<button onClick={toggleMic}>Toggle Mic</button>;
+		<button onClick={toggleCam}>Toggle Cam</button>;
+		<div id="video-grid" style={{ marginLeft: "20px" }}></div>
+		</React.Fragment>
+	);
 }

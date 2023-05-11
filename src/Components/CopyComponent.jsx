@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import styles from "./MiscComponentStyles.module.css"
 
 
 export default function CopyID({props}){
@@ -8,7 +9,7 @@ export default function CopyID({props}){
 
     return (
         <>
-            <input defaultValue={ROOM_ID} />
+            <input value={ROOM_ID} />
 
             <CopyToClipboard 
                 text={ROOM_ID}
@@ -18,6 +19,6 @@ export default function CopyID({props}){
             </CopyToClipboard>
 
             {copied ? <span>Copied</span> : null}
-        </>
+        </div>
     );
 };
