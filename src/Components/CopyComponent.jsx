@@ -8,7 +8,7 @@ export default function CopyID({props}){
     let ROOM_ID = props;   
 
     return (
-        <>
+        <div>
             <input value={ROOM_ID} />
 
             <CopyToClipboard 
