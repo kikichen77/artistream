@@ -8,8 +8,8 @@ export default function CopyID({props}){
     let ROOM_ID = props;   
 
     return (
-        <div>
-            <input value={ROOM_ID} />
+        <div className={styles.copyComponent}>
+            <input value={ROOM_ID} className={styles.idText} readOnly/>
 
             <CopyToClipboard 
                 text={ROOM_ID}
