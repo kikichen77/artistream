@@ -8,7 +8,7 @@ export default function CopyID({props}){
 
     return (
         <>
-            <input value={ROOM_ID} />
+            <input defaultValue={ROOM_ID} />
 
             <CopyToClipboard 
                 text={ROOM_ID}

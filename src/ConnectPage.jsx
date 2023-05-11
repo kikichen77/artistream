@@ -12,6 +12,7 @@ import { Form,
          WrapperRow 
         } from "./Components/MarkupComponent";
 import logoImage from './assets/HilariousHuskies.png';
+import axios from "axios";
 
 
 export default function ConnectPage({theme}) {
@@ -22,25 +23,40 @@ export default function ConnectPage({theme}) {
     const makeRoom = (e) => {
       e.preventDefault();
       const makeRoomId = uuidv4();
+      if(!userName.current.value){
+        alert("userName cannot be empty")
+      }else{
       sessionStorage.setItem('username', userName.current.value);
       navigate("/room", { state: { ROOM_ID: makeRoomId } })
     }
+  }
 
-    // const submitName = (e) => {
-    //   e.preventDefault();
-    //   sessionStorage.setItem('username', userName.current.value);
-    //   alert('username set')
-    // };
 
-    const submitRoom = (e) => {
+    const submitRoom = async (e) => {
       e.preventDefault();
-      if (roomId.current.value == "connect"){
-        alert("Cannot use that name")
-      }
-      else{
+    if (!roomId.current.value){
+       alert("Room number cannot be empty")
+      }else if(!userName.current.value){
+        alert("Username cannot be empty")
+      }else{
+       const{roomExist,roomFull}= await checkRoom()
+       console.log(roomExist)
+       console.log(roomFull)
+       if(!roomExist){
+          alert("Check the right room number")
+        }else if(roomFull){
+          alert("The room is full, please wait")
+        }else{
         sessionStorage.setItem('username', userName.current.value);
         navigate("/room", { state: { ROOM_ID: roomId.current.value } })
       }
+    }
+   }
+
+   async function checkRoom(){
+      const response=await axios.get(`http://localhost:3000/room/${roomId.current.value}`)
+      console.log(response.data)
+      return response.data
     }
   
     return (

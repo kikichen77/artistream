@@ -19,7 +19,7 @@ export default function ChatBody({messages, lastMessageRef, typingStatus}) {
 
             <div className={styles.chatboxDisplay}>
                 {messages.map((message) =>
-                message.name === sessionStorage.getItem('username') ? (
+                message.socketID === sessionStorage.getItem("id") ? (
                     <div key={message.id}>
                         <p className={styles.chatboxTextUserRight}>You</p>
                         <div className={styles.chatboxRight}>
