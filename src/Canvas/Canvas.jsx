@@ -140,6 +140,7 @@ canvas.selection = false;
 					left: data.left,
 					top: data.top,
 				});
+				object.setCoords();
 				canvas.renderAll();
 			}
 		});
