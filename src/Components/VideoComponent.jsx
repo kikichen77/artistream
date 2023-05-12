@@ -116,8 +116,8 @@ export default function Room({ props, socket }) {
 	return (
 		<React.Fragment>
 			<div className={styles.center}>
-				<button className={styles.toggleButton} onClick={toggleMic}>Toggle Mic</button>
-				<button className={styles.toggleButton} onClick={toggleCam}>Toggle Cam</button>
+				<button className={styles.toggleButton} onClick={toggleMic}>Toggle <br/>Mic</button>
+				<button className={styles.toggleButton} onClick={toggleCam}>Toggle <br/> Cam</button>
 			</div>
 		
 			<div id="video-grid" style={{ marginLeft: "20px" }}></div>
