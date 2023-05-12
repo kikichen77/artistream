@@ -12,5 +12,5 @@
 	border-radius: 20px;
 	height: 55vh;
 	position: relative;
-    overflow-y: scroll; 
+    overflow-x: hidden; 
 }

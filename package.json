@@ -6,7 +6,8 @@
     "dev": "start vite & start nodemon Server/index.js & start peerjs --port 3001",
     "devmac": "vite &  nodemon Server/index.js & peerjs --port 3001",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -14,7 +15,6 @@
     "@mui/material": "^5.12.3",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
-    "emoji-picker-react": "^4.4.9",
     "express": "^4.18.2",
     "fabric": "^5.3.0",
     "nodemon": "^2.0.22",
@@ -33,9 +33,23 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "vite": "^4.1.0"
+    "@vitest/coverage-c8": "^0.31.0",
+    "axios-mock-adapter": "^1.21.4",
+    "babel-jest": "^29.5.0",
+    "depcheck": "^1.4.3",
+    "jsdom": "^22.0.0",
+    "mongodb-memory-server": "^8.12.2",
+    "supertest": "^6.3.3",
+    "vite": "^4.1.0",
+    "vitest": "^0.31.0"
   }
 }
