@@ -1,156 +1,51 @@
-// // import { createServer } from "http";
-// // import { Server } from "socket.io";
-// // import Client from "socket.io-client";
-// // import {test, beforeAll, afterAll} from "vitest";
+import { expect, test } from "vitest";
+import SocketMock from "socket.io-mock";
 
-// // describe("my awesome project", () => {
-// // 	let io, serverSocket, clientSocket;
+let mockServer, clientSocket;
 
-// // 	beforeAll((done) => {
-// // 		const httpServer = createServer();
-// // 		io = new Server(httpServer);
-// // 		httpServer.listen(3000,() => {
-// // 			// const port = httpServer.address().port;
-// // 			clientSocket = new Client(`http://localhost:3000`);
-// // 			io.on("connection", (socket) => {
-// // 				serverSocket = socket;
-// // 			});
-// // 			clientSocket.on("connect", done);
-// // 		});
-// // 	});
+beforeAll(() => {
+	mockServer = new SocketMock();
+	clientSocket = mockServer.socketClient;
+});
 
-// // 	afterAll(() => {
-// // 		io.close();
-// // 		clientSocket.close();
-// // 	});
+afterAll(() => {
+	clientSocket = null;
+	mockServer = null;
+});
 
-// // 	test("should work", (done) => {
-// // 		clientSocket.on("hello", (arg) => {
-// // 			expect(arg).toBe("world");
-// // 			done();
-// // 		});
-// // 		serverSocket.emit("hello", "world");
-// // 	});
+test("server store the roomdata", async () => {
+	let room = {};
+	clientSocket.on("user-connected", (userId) => {
+		expect(userId).toBe("user123");
+	});
 
-// // 	test("should work (with ack)", (done) => {
-// // 		serverSocket.on("hi", (cb) => {
-// // 			cb("hola");
-// // 		});
-// // 		clientSocket.emit("hi", (arg) => {
-// // 			expect(arg).toBe("hola");
-// // 			done();
-// // 		});
-// // 	});
-// // });
-// import { fireEvent } from "@testing-library/react";
-// import { createServer } from "http";
-// import { Server } from "socket.io";
-// import Client from "socket.io-client";
-// import { test, beforeAll, afterAll } from "vitest";
+	mockServer.on("join-room", (roomid, userid) => {
+		expect(roomid).toBe("123456");
+		expect(userid).toBe("user123");
+		if (!room[roomid]) {
+			room[roomid] = [];
+			room[roomid].push(userid);
+		}
+		expect(room).toEqual({ [roomid]: [userid] });
+		console.log(room);
+		mockServer.emit("user-connected", userid);
+	});
+	clientSocket.emit("join-room", "123456", "user123");
+});
 
-// describe("Socket Room Joining", () => {
-// 	let io, serverSocket, clientSocket;
-
-// 	// beforeAll(() => {
-// 	// 		return new Promise((resolve) => {
-// 	// 			const httpServer = createServer();
-// 	// 			io = new Server(httpServer);
-// 	// 			httpServer.listen(3000, () => {
-// 	// 				clientSocket = new Client("http://localhost:3000");
-// 	// 				io.on("connection", (socket) => {
-// 	// 					serverSocket = socket;
-// 	// 					resolve();
-// 	// 				});
-// 	// 			});
-// 	// 		});
-// 	// 	});
-
-// 	beforeAll((done) => {
-// 		const httpServer = createServer();
-// 		io = new Server(httpServer);
-
-// 		io.on("connection", (socket) => {
-// 			serverSocket = socket;
-// 			clientSocket.on("connect", done);
-// 		});
-
-// 		httpServer.listen(3000, () => {
-// 			clientSocket = new Client("http://localhost:3000");
-// 		});
-// 	});
-// 	afterAll(() => {
-// 		io.close();
-// 		clientSocket.close();
-// 	});
-
-// 	test("should join a room and emit user-connected event", (done) => {
-// 		const roomId = "room1";
-// 		const userId = "user1";
-// 		console.log("roomId", roomId);
-// 		clientSocket.emit("join-room", roomId, userId);
-
-// 		// Mock the user-connected event
-// 		// fireEvent(clientSocket, "join-room", userId);
-// 		io.on("connection", (socket) => {
-// 			console.log("roomId", roomId);
-// 			socket.on("join-room", (recievedRoomId, recievedUserId) => {
-// 				console.log("recievedRoomId", recievedRoomId);
-// 				expect(recievedRoomId).not.to.equal(userId);
-// 				expect(recievedUserId).not.to.equal(userId);
-// 				// Emit user-connected event from server after user has joined the room
-// 				socket.emit("user-connected", recievedUserId);
-// 				console.log("recievedUserId", recievedUserId);
-// 			});
-// 		});
-// 		clientSocket.on("user-connected", (recievedUserId) => {
-// 			expect(recievedUserId).not.toEqual(userId);
-// 			done();
-// 		});
-
-// 		// Emit the join-room event
-// 		// serverSocket.emit("join-room", roomId, userId);
-// 	});
-// });
-import { createServer } from "http";
-import { Server } from "socket.io";
-import Client from "socket.io-client";
-import { test, beforeAll, afterAll } from "vitest";
-import { expect } from "chai";
-
-describe("Socket Room Joining", () => {
-	let io, serverSocket, clientSocket;
-
-	beforeAll((done) => {
-		const httpServer = createServer();
-		io = new Server(httpServer);
-		httpServer.listen(3100, () => {
-			clientSocket = new Client("http://localhost:3100");
-			
-			io.on("connection", (socket) => {
-				serverSocket = socket;
-				console.log("serverSocket", serverSocket);
-				serverSocket.on("join-room", (roomId, userId) => {
-					console.log("roomId", roomId);
-					serverSocket.emit("user-connected", userId);
-				});
-			});
-			clientSocket.on("connect", done);
+test("check undo method on canvas", () => {
+	let canvasData = { 1234567: [{ id: "654321", id: "789" }] };
+	mockServer.on("undo", (data) => {
+		expect(data.userId).toEqual("123456");
+		expect(data.objectId).toEqual("654321");
+		const index = canvasData["1234567"].findIndex((object) => {
+			return object.id === data.objectId;
 		});
+		if (index !== -1) {
+			canvasData["1234567"].splice(index, 1);
+		}
+		console.log(canvasData["1234567"]);
+		expect(canvasData["1234567"]).toEqual([{ id: "789" }]);
 	});
-
-	afterAll(() => {
-		io.close();
-		clientSocket.close();
-	});
-
-	test("should join a room and emit user-connected event", (done) => {
-		const roomId = "room1";
-		const userId = "user1";
-		clientSocket.emit("join-room", roomId, userId);
-
-		clientSocket.on("user-connected", (connectedUserId) => {
-			expect(connectedUserId).to.equal(userId);
-			done();
-		});
-	});
+	clientSocket.emit("undo", { userId: "123456", objectId: "654321" });
 });

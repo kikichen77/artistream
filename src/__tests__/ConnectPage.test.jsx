@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { expect, test } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";

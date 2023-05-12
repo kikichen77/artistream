@@ -35,24 +35,25 @@ export default function ConnectPage({theme}) {
 
     const submitRoom = async (e) => {
       e.preventDefault();
-    if (!roomId.current.value){
-       alert("Room number cannot be empty")
-      }else if(!userName.current.value){
-        alert("Username cannot be empty")
-      }else{
-       const{roomExist,roomFull}= await checkRoom()
-       console.log(roomExist)
-       console.log(roomFull)
-       if(!roomExist){
-          alert("Check the right room number")
-        }else if(roomFull){
-          alert("The room is full, please wait")
-        }else{
-
-        sessionStorage.setItem('username', userName.current.value);
-        navigate("/room", { state: { ROOM_ID: roomId.current.value } })
-      }
-    }
+   if (!roomId.current.value && !userName.current.value) {
+			alert("Username and Room number cannot be empty");
+		} else if (!roomId.current.value) {
+			alert("Room number cannot be empty");
+		} else if (!userName.current.value) {
+			alert("Username cannot be empty");
+		} else {
+			const { roomExist, roomFull } = await checkRoom();
+			console.log(roomExist);
+			console.log(roomFull);
+			if (!roomExist) {
+				alert("Check the right room number");
+			} else if (roomFull) {
+				alert("The room is full, please wait");
+			} else {
+				sessionStorage.setItem("username", userName.current.value);
+				navigate("/room", { state: { ROOM_ID: roomId.current.value } });
+			}
+		}
    }
 
    async function checkRoom(){
