@@ -82,6 +82,6 @@ npm run test
 ```
 In case of port (example, port 3000 and port 3001) conflicts run the following commands:
 ```bash
-lsof -i :3000 - Gives port information (we need PID)
-kill -9 (PID)
+lsof -i :3000 # This command gives the Process ID (PID) of the port.
+kill -9 (PID) # This command is used to kill the port using the respective Process ID (PID).
 ```

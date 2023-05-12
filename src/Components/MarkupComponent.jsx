@@ -22,12 +22,14 @@ export const Form = styled.form`
 `;
 
 export const LogoImage = styled.img`
-  width: 90%;
+  width: 220px;
   background-size: cover;
   background-position: center;
   border-radius: 30%;
+  margin-bottom: 20px;
+  // border: 10px solid white;
+  padding 10px;
   margin: auto;
-  padding: 10px;
 `;
 
 export const Input = styled.input`

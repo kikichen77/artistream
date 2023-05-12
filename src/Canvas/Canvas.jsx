@@ -394,7 +394,7 @@ canvas.selection = false;
 				justifyContent: "center",
 				alignItems: "center",
 				marginRight: "20px",
-				height: "100%",
+				height: "89vh",
 			}}
 		>
 			<div
@@ -415,7 +415,7 @@ canvas.selection = false;
 				>
 					<canvas
 						ref={canvasRef}
-						height={700}
+						height={800}
 						style={{
 							width: "100%",
 							borderRadius: "20px",
