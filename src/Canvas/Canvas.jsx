@@ -394,6 +394,7 @@ canvas.selection = false;
 				justifyContent: "center",
 				alignItems: "center",
 				marginRight: "20px",
+				height: "100%",
 			}}
 		>
 			<div
