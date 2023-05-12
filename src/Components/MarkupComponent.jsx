@@ -22,13 +22,10 @@ export const Form = styled.form`
 `;
 
 export const LogoImage = styled.img`
-  width: 180px;
-  background-image: url(${props => props.src});
+  width: 90%;
   background-size: cover;
   background-position: center;
-  border-radius: 50%;
-  margin-bottom: 20px
-
+  border-radius: 30%;
   margin: auto;
   padding: 10px;
 `;
