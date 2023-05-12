@@ -43,8 +43,6 @@ export default function ConnectPage({theme}) {
 			alert("Username cannot be empty");
 		} else {
 			const { roomExist, roomFull } = await checkRoom();
-			console.log(roomExist);
-			console.log(roomFull);
 			if (!roomExist) {
 				alert("Check the right room number");
 			} else if (roomFull) {

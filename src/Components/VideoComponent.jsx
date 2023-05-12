@@ -5,9 +5,7 @@ import styles from "./MiscComponentStyles.module.css"
 
 export default function Room({ props, socket }) {
 	let ROOM_ID = props;
-	//const  mediaStreamNameMap =useRef( new Map());
 	console.log("Component - Room ID:" + ROOM_ID);
-	//let socket = SocketIO("http://localhost:3000")
 	let vidOn = true;
     let micOn = true;
     let selfMediaStream;

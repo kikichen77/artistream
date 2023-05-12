@@ -7,10 +7,9 @@ import Canvas from "./Canvas/Canvas";
 import { Grid } from "@mui/material";
 import Header from "./Header";
 import ConnectedUsers from "./ConnectedUsers";
-//import MeetingControls from "./MeetingControls";
 import CopyID from "./Components/CopyComponent"
 
-export default function CallPage({ theme }) {
+export default function CallPage() {
 	const { state } = useLocation();
 	if (!state) {
 		return <Navigate to="/error" />;
@@ -30,11 +29,10 @@ export default function CallPage({ theme }) {
 				<Grid item xs={6} sm={4} md={3} lg={3} xl={2}>
 					<CopyID props={ROOM_ID}/>
 					<ConnectedUsers ROOM_ID={ROOM_ID} socket={socket} />
-					<ChatBox socket={socket} theme={theme} />
+					<ChatBox socket={socket} />
 				</Grid>
 				<Grid item xs={6} sm={8} md={9} lg={9} xl={10}>
-					<Canvas socket={socket} theme={theme} />
-					{/* <MeetingControls /> */}
+					<Canvas socket={socket} />
 				</Grid>
 			</Grid>
 		</React.Fragment>

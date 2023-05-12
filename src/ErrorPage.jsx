@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { NavLink } from "react-router-dom"
 import styles from "./Components/MiscComponentStyles.module.css"
 
+// Error page layout
 export default function ErrorPage() {
     let location = useLocation();
     return (<div className={styles.errorPage}>

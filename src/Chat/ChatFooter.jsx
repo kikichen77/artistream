@@ -1,12 +1,12 @@
 import styles from "./ChatBoxStyles.module.css"
 import React, { useState } from 'react';
 
+// Chat footer has the text input area and send button
 export default function ChatFooter({socket}) {
   const [message, setMessage] = useState('');
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    console.log(socket.id)
     if (message.trim() && sessionStorage.getItem('username')) {
         socket.emit('message', {
             text: message,

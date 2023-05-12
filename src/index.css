@@ -10,17 +10,6 @@
   object-fit: cover;
 }
 
-/* Dark & Light mode */
-.dark {
-  background-color: rgb(44, 45, 53);
-  color: white;
-}
-
-.light {
-  background-color: white;
-  color: black;
-}
-
 /* frame */
 body {
   margin: 0;

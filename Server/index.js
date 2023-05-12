@@ -43,7 +43,6 @@ io.on("connection", (socket) => {
 		}else{
 			room[roomId].push(userId)
 		}
-		console.log(room)
 		
 		userMap.set(socket.id,userId)
 	

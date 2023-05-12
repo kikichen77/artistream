@@ -95,7 +95,6 @@ canvas.selection = false;
 					top: obj.top,
 					left: obj.left,
 				};
-				console.log(movingData)
 				socket.emit("object-moving", movingData);
 			
 			
@@ -133,7 +132,6 @@ canvas.selection = false;
 		});
 
 		socket.on("object-moving", (data) => {
-			console.log(data)
 			const object = canvas.getObjects().find((obj) => obj.id === data.id);
 			if (object) {
 				object.set({
@@ -183,8 +181,6 @@ canvas.selection = false;
 			const object = canvas
 				.getObjects()
 				.find((obj) => obj.id === data.objectId);
-			console.log(canvas.getObjects());
-			console.log(data.objectId);
 
 			if (object) {
 				canvas.remove(object);
@@ -234,7 +230,6 @@ canvas.selection = false;
 				top: obj.top,
 				flipY: obj.flipY,
 			};
-			console.log(scalingData);
 			socket.emit("object-scaling", scalingData);
 		});
 
@@ -274,10 +269,7 @@ canvas.selection = false;
 		const objects = canvas.getObjects();
 		if (objects.length > 0) {
 			const lastObject = objects[objects.length - 1];
-			//console.log('Last object:', lastObject);
 			canvas.remove(lastObject);
-			//const undoData = { userId: socket.id, objectId: lastObject.id };
-			// console.log('Sending undo data:', undoData);
 			socket.emit("undo", { userId: socket.id, objectId: lastObject.id });
 		}
 	};

@@ -3,7 +3,7 @@ import ChatBody from "./ChatBody"
 import ChatFooter from "./ChatFooter"
 import React, { useEffect, useState, useRef } from 'react';
 
-
+// Layout of entire chatbox
 export default function ChatBox({socket, theme}) {
     const [messages, setMessages] = useState([]);
     const [typingStatus, setTypingStatus] = useState('');

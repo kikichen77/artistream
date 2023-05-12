@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from "./MiscComponentStyles.module.css"
 
-
+// Used to copy the generated room id
 export default function CopyID({props}){
     const [copied, setCopied] = useState(''); 
     let ROOM_ID = props;   

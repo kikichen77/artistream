@@ -15,11 +15,3 @@ test("Canvas", () => {
 	render(<Canvas />);
 	});
 });
-
-// vi.mock("socket.io-client", () => ({
-// 	on: jest.fn(),
-// }));
-// test("Canvas renders without crashing", () => {
-// 	render(<Canvas />);
-// 	// Additional assertions or testing logic can be added here
-// });

@@ -1,6 +1,7 @@
 import styles from "./ChatBoxStyles.module.css"
 import React from 'react';
 
+// ChatBody holds the chat from users
 export default function ChatBody({messages, lastMessageRef, typingStatus}) {
     return (
         <>
